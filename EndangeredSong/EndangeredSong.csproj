@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Game1.cs" />
+    <Compile Include="Harmonian.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -53,10 +54,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\WindowsGL\Debug\EndangeredSong.exe" />
+    <Content Include="bin\WindowsGL\Debug\EndangeredSong.pdb" />
+    <Content Include="bin\WindowsGL\Debug\EndangeredSong.vshost.exe" />
+    <Content Include="bin\WindowsGL\Debug\MonoGame.Framework.dll" />
+    <Content Include="bin\WindowsGL\Debug\OpenTK.dll" />
     <Content Include="Icon.ico" />
+    <Content Include="obj\x86\Debug\EndangeredSong.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\x86\Debug\EndangeredSong.exe" />
+    <Content Include="obj\x86\Debug\EndangeredSong.pdb" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\WindowsGL\Debug\EndangeredSong.vshost.exe.manifest" />
+    <None Include="obj\x86\Debug\build.force" />
+    <None Include="obj\x86\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\x86\Debug\EndangeredSong.csprojResolveAssemblyReference.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\x86\Debug\TempPE\" />
   </ItemGroup>
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">
