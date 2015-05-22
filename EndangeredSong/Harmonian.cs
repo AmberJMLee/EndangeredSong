@@ -4,6 +4,7 @@ public class Harmonian
 {
     string musicFile;
     string imageFile;
+    bool isHid;
     int X;
     int Y;
 	public Harmonian()

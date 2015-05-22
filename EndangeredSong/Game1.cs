@@ -42,6 +42,7 @@ namespace EndangeredSong
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            player = Content.Load<Texture2D>("Harmonian");
         }
 
         /// <summary>

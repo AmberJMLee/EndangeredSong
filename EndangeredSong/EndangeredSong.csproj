@@ -74,6 +74,8 @@
     <None Include="obj\x86\Debug\EndangeredSong.csprojResolveAssemblyReference.cache" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\bin\WindowsGL\" />
+    <Folder Include="Content\obj\WindowsGL\" />
     <Folder Include="obj\x86\Debug\TempPE\" />
   </ItemGroup>
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
