@@ -38,10 +38,16 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controls.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Game1.cs" />
     <Compile Include="Harmonian.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sprite.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
@@ -59,7 +65,12 @@
     <Content Include="bin\WindowsGL\Debug\EndangeredSong.vshost.exe" />
     <Content Include="bin\WindowsGL\Debug\MonoGame.Framework.dll" />
     <Content Include="bin\WindowsGL\Debug\OpenTK.dll" />
-    <Content Include="Icon.ico" />
+    <Content Include="Content\Harmonian.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="obj\x86\Debug\EndangeredSong.csproj.FileListAbsolute.txt" />
     <Content Include="obj\x86\Debug\EndangeredSong.exe" />
     <Content Include="obj\x86\Debug\EndangeredSong.pdb" />

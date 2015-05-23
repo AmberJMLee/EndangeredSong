@@ -12,6 +12,8 @@ namespace EndangeredSong
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D player;
+        Controls controls;
+        Harmonian h1;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -29,6 +31,8 @@ namespace EndangeredSong
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = false;
+            h1 = new Harmonian(50, 50, 200, 125);
+            controls = new Controls();
             base.Initialize();
         }
 
@@ -39,8 +43,9 @@ namespace EndangeredSong
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
+            Content.RootDirectory = "Content";
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            h1.LoadContent(this.Content);
             // TODO: use this.Content to load your game content here
             player = Content.Load<Texture2D>("Harmonian");
         }
@@ -63,9 +68,9 @@ namespace EndangeredSong
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            controls.Update();
             // TODO: Add your update logic here
-
+            h1.Update(controls, gameTime);
             base.Update(gameTime);
         }
 
@@ -76,7 +81,9 @@ namespace EndangeredSong
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            spriteBatch.Begin();
+            h1.Draw(spriteBatch);
+            spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
