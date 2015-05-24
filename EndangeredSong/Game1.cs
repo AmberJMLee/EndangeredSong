@@ -16,6 +16,7 @@ namespace EndangeredSong
         Harmonian h1;
         BIOAgent b1;
         Obstacle o1;
+        Camera camera;
         int dimX;
         int dimY;
 
@@ -36,6 +37,9 @@ namespace EndangeredSong
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = false;
+
+            camera = new Camera(GraphicsDevice.Viewport);
+
             graphics.PreferredBackBufferWidth = 1000;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 500;   // set this value to the desired height of your window          
             graphics.ApplyChanges();
@@ -87,6 +91,8 @@ namespace EndangeredSong
                 Exit();
             controls.Update();
             // TODO: Add your update logic here
+
+            camera.Update(gameTime, h1);
             h1.Update(controls, gameTime);
             o1.Update(controls, gameTime);
             b1.Update(controls, gameTime, h1);
@@ -102,7 +108,7 @@ namespace EndangeredSong
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.transform);
             h1.Draw(spriteBatch);
             o1.Draw(spriteBatch);
             b1.Draw(spriteBatch);
