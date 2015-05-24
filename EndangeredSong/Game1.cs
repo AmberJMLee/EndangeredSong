@@ -15,9 +15,7 @@ namespace EndangeredSong
         Controls controls;
         Harmonian h1;
         BIOAgent b1;
-        BIOAgent b2;
         Obstacle o1;
-        Texture2D menu;
         int dimX;
         int dimY;
 
@@ -47,8 +45,6 @@ namespace EndangeredSong
             h1 = new Harmonian(50, 50, 200, 125, dimX, dimY);
             o1 = new Obstacle(100, 150, 250, 300);
             b1 = new BIOAgent(600, 300, 50, 50, dimX, dimY);
-            b2 = new BIOAgent(200, 200, 50, 50, dimX, dimY);
-            menu = Content.Load<Texture2D>("menubackground");
             controls = new Controls();
 
             
@@ -68,7 +64,6 @@ namespace EndangeredSong
             h1.LoadContent(this.Content);
             o1.LoadContent(this.Content);
             b1.LoadContent(this.Content);
-            b2.LoadContent(this.Content);
             // TODO: use this.Content to load your game content here
         }
 
@@ -95,7 +90,6 @@ namespace EndangeredSong
             h1.Update(controls, gameTime);
             o1.Update(controls, gameTime);
             b1.Update(controls, gameTime, h1);
-            b2.Update(controls, gameTime, h1);
             //Debug.WriteLine(h1.getX() + " " + h1.getY());
 
             base.Update(gameTime);
@@ -112,8 +106,6 @@ namespace EndangeredSong
             h1.Draw(spriteBatch);
             o1.Draw(spriteBatch);
             b1.Draw(spriteBatch);
-            b2.Draw(spriteBatch);
-            spriteBatch.Draw(menu, 0, 0, 100, 100, 30, 30);
             spriteBatch.End();
             // TODO: Add your drawing code here
 

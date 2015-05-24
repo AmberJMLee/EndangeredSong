@@ -41,6 +41,7 @@
     <Compile Include="BIOAgent.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Camera.cs" />
     <Compile Include="Controls.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>

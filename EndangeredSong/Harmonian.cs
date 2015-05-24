@@ -29,7 +29,10 @@ namespace EndangeredSong
         {
             return this.pos;
         }
-
+        public Vector2 getDimension()
+        {
+            return this.dim;
+        }
         public void LoadContent(ContentManager content)
         {
             image = content.Load<Texture2D>("Harmonian.png");
