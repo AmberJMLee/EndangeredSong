@@ -12,13 +12,17 @@ namespace EndangeredSong
     {
         string musicFile;
         bool isHid;
-        
-        public Harmonian(int x, int y, int width, int height)
+        int maxX;
+        int maxY;
+
+        public Harmonian(int x, int y, int width, int height, int maxX, int maxY)
 	    {
             this.spriteX = x;
             this.spriteY = y;
             this.spriteWidth = width;
             this.spriteHeight = height;
+            this.maxX = maxX;
+            this.maxY = maxY;
             musicFile = "";
 	    }
         public int getX()
@@ -56,13 +60,13 @@ namespace EndangeredSong
         public void Move(Controls controls)
         {
 
-            if (controls.isPressed(Keys.D, Buttons.DPadRight))
+            if (controls.isPressed(Keys.D, Buttons.DPadRight) && this.spriteX < maxX-this.spriteWidth)
                 this.spriteX += 10;
-            if (controls.isPressed(Keys.A, Buttons.DPadLeft))
+            if (controls.isPressed(Keys.A, Buttons.DPadLeft) && this.spriteX > 0)
                 this.spriteX -= 10;
-            if (controls.isPressed(Keys.W, Buttons.DPadUp))
+            if (controls.isPressed(Keys.W, Buttons.DPadUp) && this.spriteY > 0)
                 this.spriteY -= 10;
-            if (controls.isPressed(Keys.S, Buttons.DPadDown))
+            if (controls.isPressed(Keys.S, Buttons.DPadDown) && this.spriteY < maxY-this.spriteHeight)
                 this.spriteY += 10;
 
         }

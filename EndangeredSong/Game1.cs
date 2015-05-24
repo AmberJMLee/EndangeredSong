@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace EndangeredSong
 {
@@ -14,6 +15,9 @@ namespace EndangeredSong
         Controls controls;
         Harmonian h1;
         Obstacle o1;
+        int dimX;
+        int dimY;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -31,9 +35,15 @@ namespace EndangeredSong
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = false;
-            h1 = new Harmonian(50, 50, 200, 125);
+            dimX = GraphicsDevice.Viewport.Bounds.Width;
+            dimY = GraphicsDevice.Viewport.Bounds.Height;
+            //Debug.WriteLine(dimX + " " + dimY);
+            h1 = new Harmonian(50, 50, 200, 125, dimX, dimY);
             o1 = new Obstacle(100, 150, 250, 300);
             controls = new Controls();
+
+            
+
             base.Initialize();
         }
 
@@ -73,6 +83,8 @@ namespace EndangeredSong
             // TODO: Add your update logic here
             h1.Update(controls, gameTime);
             o1.Update(controls, gameTime);
+            //Debug.WriteLine(h1.getX() + " " + h1.getY());
+
             base.Update(gameTime);
         }
 
