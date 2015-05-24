@@ -53,7 +53,7 @@ namespace EndangeredSong
             Vector2 direction = player.getPosition() -  this.pos;
             direction.Normalize();
 
-            this.pos = this.pos + direction * 2;
+            this.pos = this.pos + direction * 6;
 
         }
     }
