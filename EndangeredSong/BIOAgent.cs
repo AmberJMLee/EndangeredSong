@@ -31,6 +31,7 @@ namespace EndangeredSong
             return this.pos;
         }
 
+
         public void LoadContent(ContentManager content)
         {
             image = content.Load<Texture2D>("BIOAgent.png");
@@ -49,7 +50,10 @@ namespace EndangeredSong
 
         public void Move(Controls controls, Harmonian player)
         {
-            
+            Vector2 direction = player.getPosition() -  this.pos;
+            direction.Normalize();
+
+            this.pos = this.pos + direction * 2;
 
         }
     }

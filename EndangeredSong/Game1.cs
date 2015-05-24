@@ -36,6 +36,9 @@ namespace EndangeredSong
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = false;
+            graphics.PreferredBackBufferWidth = 1000;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 500;   // set this value to the desired height of your window          
+            graphics.ApplyChanges();
             dimX = GraphicsDevice.Viewport.Bounds.Width;
             dimY = GraphicsDevice.Viewport.Bounds.Height;
             //Debug.WriteLine(dimX + " " + dimY);
