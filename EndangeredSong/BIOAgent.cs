@@ -33,7 +33,7 @@ namespace EndangeredSong
 
         public void LoadContent(ContentManager content)
         {
-            image = content.Load<Texture2D>("Harmonian.png");
+            image = content.Load<Texture2D>("BIOAgent.png");
         }
 
         public void Draw(SpriteBatch sb)

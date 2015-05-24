@@ -47,15 +47,32 @@ namespace EndangeredSong
 
         public void Move(Controls controls)
         {
+            //Vector2 dir;
+            //dir.X = 0;
+            //dir.Y = 0;
+            
+            //if (controls.isPressed(Keys.D, Buttons.DPadRight) && this.pos.X < maxX-this.dim.X)
+            //    dir.X = 1;
+            //if (controls.isPressed(Keys.A, Buttons.DPadLeft) && this.pos.X > 0)
+            //    dir.X = -1;
+            //if (controls.isPressed(Keys.W, Buttons.DPadUp) && this.pos.Y > 0)
+            //    dir.Y = 1;
+            //if (controls.isPressed(Keys.S, Buttons.DPadDown) && this.pos.Y < maxY-this.dim.Y)
+            //    dir.Y = -1;
+
+            //dir.Normalize();
+
+            //this.pos.X += dir.X * 10;
+            //this.pos.Y += dir.Y * 10;
 
             if (controls.isPressed(Keys.D, Buttons.DPadRight) && this.pos.X < maxX-this.dim.X)
-                this.pos.X += 10;
+                pos.X += 10;
             if (controls.isPressed(Keys.A, Buttons.DPadLeft) && this.pos.X > 0)
-                this.pos.X -= 10;
+                pos.X -= 10;
             if (controls.isPressed(Keys.W, Buttons.DPadUp) && this.pos.Y > 0)
-                this.pos.Y -= 10;
+                pos.Y -= 10;
             if (controls.isPressed(Keys.S, Buttons.DPadDown) && this.pos.Y < maxY-this.dim.Y)
-                this.pos.Y += 10;
+                pos.Y += 10;
 
         }
        
