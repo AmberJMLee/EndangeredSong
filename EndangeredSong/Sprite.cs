@@ -10,8 +10,8 @@ namespace EndangeredSong
 {
 	abstract class Sprite
 	{
-		protected int spriteX, spriteY;
-		protected int spriteWidth, spriteHeight;
+		protected Vector2 pos;
+		protected Vector2 dim;
 		protected Texture2D image;
 
 		public Sprite ()

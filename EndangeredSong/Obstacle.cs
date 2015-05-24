@@ -15,26 +15,15 @@ namespace EndangeredSong
         
         public Obstacle(int x, int y, int width, int height)
 	    {
-            this.spriteX = x;
-            this.spriteY = y;
-            this.spriteWidth = width;
-            this.spriteHeight = height;
+            this.pos.X = x;
+            this.pos.Y = y;
+            this.dim.X = width;
+            this.dim.Y = height;
 	    }
-        public int getX()
+        
+        public Vector2 getPosition()
         {
-            return spriteX;
-        }
-        public int getY()
-        {
-            return spriteY;
-        }
-        public void setX(int x)
-        {
-            spriteX = x;
-        }
-        public void setY(int y)
-        {
-            spriteY = y;
+            return this.pos;
         }
 
         public void LoadContent(ContentManager content)
@@ -44,9 +33,8 @@ namespace EndangeredSong
 
         public void Draw(SpriteBatch sb)
         {
-            sb.Draw(image, new Rectangle(spriteX, spriteY, spriteWidth, spriteHeight), Color.White);
+            sb.Draw(image, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
         }
-
         public void Update(Controls controls, GameTime gameTime)
         {
             //update capacity 
