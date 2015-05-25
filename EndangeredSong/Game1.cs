@@ -16,6 +16,7 @@ namespace EndangeredSong
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Controls controls;
+
         Menu menu;
         bool started;
         Camera camera;
@@ -27,7 +28,6 @@ namespace EndangeredSong
         int dimX;
         int dimY;
 
-        int once;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -45,7 +45,6 @@ namespace EndangeredSong
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = false;
-            once = 1;
             camera = new Camera(GraphicsDevice.Viewport);
             GraphicsDevice.Viewport = new Viewport(0, 0, 2000, 1800);
             graphics.PreferredBackBufferWidth = 980;  // set this value to the desired width of your window
@@ -53,22 +52,24 @@ namespace EndangeredSong
             graphics.ApplyChanges();
             dimX = GraphicsDevice.Viewport.Bounds.Width;
             dimY = GraphicsDevice.Viewport.Bounds.Height;
-            //Debug.WriteLine(dimX + " " + dimY);
+
             undiscoveredHarmonians = new ArrayList();
             obstacles = new ArrayList();
+
             player = new Harmonian(300, 250, 200, 125, dimX, dimY);
-            //harmonians.Push(player);
             b1 = new BIOAgent(600, 300, 50, 50, dimX, dimY);
+            menu = new Menu(0, 0, 980, 540);
+
             started = false;
+            
             controls = new Controls();
             rand = new Random();
-            menu = new Menu(0, 0, 980, 540);
-            for (int i = 0; i < 10; i++)
+            
+
+            for (int i = 0; i < 10; i++)    //randomly generate 10 obstacles and harmonians on the map
             {
-                Harmonian h;
-                h = new Harmonian(rand.Next(0, 1800), rand.Next(0, 1600), 200, 125, dimX, dimY);
-                Obstacle o;
-                o = new Obstacle(rand.Next(0, 1800), rand.Next(0, 1600), 400, 300);
+                Harmonian h = new Harmonian(rand.Next(0, 1800), rand.Next(0, 1600), 200, 125, dimX, dimY);
+                Obstacle o = new Obstacle(rand.Next(0, 1800), rand.Next(0, 1600), 400, 300);
                 undiscoveredHarmonians.Add(h);
                 obstacles.Add(o);
             }
@@ -83,7 +84,6 @@ namespace EndangeredSong
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             Content.RootDirectory = "Content";
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -96,7 +96,6 @@ namespace EndangeredSong
 
             b1.LoadContent(this.Content);
             menu.LoadContent(this.Content);
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -105,7 +104,7 @@ namespace EndangeredSong
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+
         }
 
         /// <summary>
@@ -117,27 +116,25 @@ namespace EndangeredSong
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            // TODO: Add your update logic here
+
             if(Keyboard.GetState().IsKeyDown(Keys.Space))
             {
                 started = true;
             }
+
             menu.Update();
 
-                //the game begins!
-                controls.Update();
-                camera.Update(gameTime, player);
-                player.Update(controls, gameTime);
-                for (int i = 0; i < 10; i++)
-                {
-                    //((Harmonian)undiscoveredHarmonians[i]).Update(controls, gameTime);
-                    ((Obstacle)obstacles[i]).Update(controls, gameTime);
-                }
-                b1.Update(controls, gameTime, player);
-                once--;
-            
-            //Debug.WriteLine(h1.getX() + " " + h1.getY());
-
+            controls.Update();
+            camera.Update(gameTime, player);
+            player.Update(controls, gameTime);
+            for (int i = 0; i < 10; i++)
+            {
+                //((Harmonian)undiscoveredHarmonians[i]).Update(controls, gameTime);
+                ((Obstacle)obstacles[i]).Update(controls, gameTime);
+            }
+            b1.Update(controls, gameTime, player);
+         
+         
             base.Update(gameTime);
         }
 
@@ -162,8 +159,9 @@ namespace EndangeredSong
                 b1.Draw(spriteBatch);
                 player.Draw(spriteBatch);
             }
+
             spriteBatch.End();
-            // TODO: Add your drawing code here
+
             base.Draw(gameTime);
         }
     }
