@@ -14,20 +14,29 @@ namespace EndangeredSong
         private Texture2D GUITexture;
         private Rectangle GUIRect;
         private string assetName;
-        private int x, y, width, height;
+        private Vector2 pos;
+        private Vector2 dim;
         public Menu(int x, int y, int width, int height)
         {
             this.assetName = "menubackground";
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
+            this.pos.X = x;
+            this.pos.Y = y;
+            this.dim.X = width;
+            this.dim.Y = height;
             start = false;
+        }
+        public Vector2 getPosition()
+        {
+            return this.pos;
+        }
+        public Vector2 getDimension()
+        {
+            return this.dim;
         }
         public void LoadContent(ContentManager content)
         {
             GUITexture = content.Load<Texture2D>(assetName);
-            GUIRect = new Rectangle(x, y, width, height);
+            GUIRect = new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y);
         }
         public void Update()
         {

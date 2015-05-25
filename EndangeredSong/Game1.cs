@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using OpenTK;
+//using OpenTK;
 using System;
 using System.Collections;
 using System.Diagnostics;
@@ -27,6 +27,8 @@ namespace EndangeredSong
         Random rand;
         int dimX;
         int dimY;
+        int screenWidth;
+        int screenHeight;
 
         public Game1()
         {
@@ -47,8 +49,10 @@ namespace EndangeredSong
             IsMouseVisible = false;
             camera = new Camera(GraphicsDevice.Viewport);
             GraphicsDevice.Viewport = new Viewport(0, 0, 2000, 1800);
-            graphics.PreferredBackBufferWidth = 980;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = 540;   // set this value to the desired height of your window          
+            screenWidth = 980;
+            screenHeight = 540;
+            graphics.PreferredBackBufferWidth = screenWidth;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = screenHeight;   // set this value to the desired height of your window          
             graphics.ApplyChanges();
             dimX = GraphicsDevice.Viewport.Bounds.Width;
             dimY = GraphicsDevice.Viewport.Bounds.Height;
@@ -122,19 +126,26 @@ namespace EndangeredSong
                 started = true;
             }
 
-            menu.Update();
+            if (started)
+            {
+                camera.Update(gameTime, player, screenWidth, screenHeight);
+                player.Update(controls, gameTime);
+
+                for (int i = 0; i < 10; i++)
+                {
+                    //((Harmonian)undiscoveredHarmonians[i]).Update(controls, gameTime);
+                    ((Obstacle)obstacles[i]).Update(controls, gameTime);
+                }
+                b1.Update(controls, gameTime, player);
+            }
+            else
+            {
+                menu.Update();
+                camera.Update(gameTime, menu, screenWidth, screenHeight);
+            }
 
             controls.Update();
-            camera.Update(gameTime, player);
-            player.Update(controls, gameTime);
-            for (int i = 0; i < 10; i++)
-            {
-                //((Harmonian)undiscoveredHarmonians[i]).Update(controls, gameTime);
-                ((Obstacle)obstacles[i]).Update(controls, gameTime);
-            }
-            b1.Update(controls, gameTime, player);
-         
-         
+                             
             base.Update(gameTime);
         }
 
