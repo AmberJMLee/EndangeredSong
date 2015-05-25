@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Menu;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;

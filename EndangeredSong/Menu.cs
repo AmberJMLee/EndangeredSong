@@ -6,17 +6,17 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
-namespace Menu
+namespace EndangeredSong
 {
-    class GUIElement
+    class Menu
     {
         bool start;
         private Texture2D GUITexture;
         private Rectangle GUIRect;
         private string assetName;
-        public GUIElement(string aN)
+        public Menu(int x, int y, int width, int height)
         {
-            this.assetName = aN;
+            this.assetName = "menubackground";
             start = false;
         }
         public void LoadContent(ContentManager content)

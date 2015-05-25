@@ -1,5 +1,4 @@
-﻿using Menu;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using OpenTK;
@@ -17,7 +16,7 @@ namespace EndangeredSong
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Controls controls;
-        MainMenu menu = new MainMenu();
+        Menu menu;
         bool started;
         Camera camera;
         Stack harmonians;
@@ -64,7 +63,7 @@ namespace EndangeredSong
             started = false;
             controls = new Controls();
             rand = new Random();
-
+            menu = new Menu(0, 0, 800, 600);
             for (int i = 0; i < 10; i++)
             {
                 Harmonian h;
@@ -161,7 +160,7 @@ namespace EndangeredSong
                 ((Obstacle)obstacles[i]).Draw(spriteBatch);
             }
             b1.Draw(spriteBatch);
-            
+            player.Draw(spriteBatch);
             if (!started)
                 menu.Draw(spriteBatch);
             spriteBatch.End();
