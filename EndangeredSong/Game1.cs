@@ -21,7 +21,7 @@ namespace EndangeredSong
         bool started;
         Camera camera;
         ArrayList undiscoveredHarmonians;
-        ArrayList obstacles;
+        ArrayList hidingPlaces;
         Harmonian player;
         BIOAgent b1;
         Random rand;
@@ -58,7 +58,7 @@ namespace EndangeredSong
             dimY = GraphicsDevice.Viewport.Bounds.Height;
 
             undiscoveredHarmonians = new ArrayList();
-            obstacles = new ArrayList();
+            hidingPlaces = new ArrayList();
 
             player = new Harmonian(300, 250, 200, 125, dimX, dimY);
             b1 = new BIOAgent(600, 300, 50, 50, dimX, dimY);
@@ -73,9 +73,9 @@ namespace EndangeredSong
             for (int i = 0; i < 10; i++)    //randomly generate 10 obstacles and harmonians on the map
             {
                 Harmonian h = new Harmonian(rand.Next(0, 1800), rand.Next(0, 1600), 200, 125, dimX, dimY);
-                Obstacle o = new Obstacle(rand.Next(0, 1800), rand.Next(0, 1600), 400, 300);
+                HidingPlace p = new HidingPlace(rand.Next(0, 1800), rand.Next(0, 1600), 400, 300);
                 undiscoveredHarmonians.Add(h);
-                obstacles.Add(o);
+                hidingPlaces.Add(p);
             }
            
 
@@ -95,7 +95,7 @@ namespace EndangeredSong
             for (int i = 0; i < 10; i++)
             {
                 ((Harmonian)undiscoveredHarmonians[i]).LoadContent(this.Content);
-                ((Obstacle)obstacles[i]).LoadContent(this.Content);
+                ((HidingPlace)hidingPlaces[i]).LoadContent(this.Content);
             }
 
             b1.LoadContent(this.Content);
@@ -134,7 +134,7 @@ namespace EndangeredSong
                 for (int i = 0; i < 10; i++)
                 {
                     //((Harmonian)undiscoveredHarmonians[i]).Update(controls, gameTime);
-                    ((Obstacle)obstacles[i]).Update(controls, gameTime);
+                    ((HidingPlace)hidingPlaces[i]).Update(controls, gameTime);
                 }
                 b1.Update(controls, gameTime, player);
             }
@@ -165,7 +165,7 @@ namespace EndangeredSong
                 for (int i = 0; i < 10; i++)
                 {
                     ((Harmonian)undiscoveredHarmonians[i]).Draw(spriteBatch);
-                    ((Obstacle)obstacles[i]).Draw(spriteBatch);
+                    ((HidingPlace)hidingPlaces[i]).Draw(spriteBatch);
                 }
                 b1.Draw(spriteBatch);
                 player.Draw(spriteBatch);

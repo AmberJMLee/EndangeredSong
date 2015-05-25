@@ -8,12 +8,12 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace EndangeredSong
 {
-    class Obstacle : Sprite
+    class HidingPlace : Sprite
     {
         int maxCapacity;
         int currentCapacity;
-        
-        public Obstacle(int x, int y, int width, int height)
+
+        public HidingPlace(int x, int y, int width, int height)
 	    {
             this.pos.X = x;
             this.pos.Y = y;
