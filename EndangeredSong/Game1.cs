@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Menu;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
@@ -13,6 +14,7 @@ namespace EndangeredSong
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Controls controls;
+        GUIElement menu;
         Harmonian h1;
         BIOAgent b1;
         Obstacle o1;
@@ -49,6 +51,7 @@ namespace EndangeredSong
             h1 = new Harmonian(50, 50, 200, 125, dimX, dimY);
             o1 = new Obstacle(100, 150, 250, 300);
             b1 = new BIOAgent(600, 300, 50, 50, dimX, dimY);
+            menu = new GUIElement("menubackground");
             controls = new Controls();
 
             
@@ -65,9 +68,11 @@ namespace EndangeredSong
             // Create a new SpriteBatch, which can be used to draw textures.
             Content.RootDirectory = "Content";
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
             h1.LoadContent(this.Content);
             o1.LoadContent(this.Content);
             b1.LoadContent(this.Content);
+            menu.LoadContent(this.Content);
             // TODO: use this.Content to load your game content here
         }
 
@@ -112,6 +117,7 @@ namespace EndangeredSong
             h1.Draw(spriteBatch);
             o1.Draw(spriteBatch);
             b1.Draw(spriteBatch);
+            menu.Draw(spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here
 
