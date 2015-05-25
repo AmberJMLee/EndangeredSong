@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
+using System.Diagnostics;
 
 namespace EndangeredSong
 {
@@ -50,32 +51,36 @@ namespace EndangeredSong
 
         public void Move(Controls controls)
         {
-            //Vector2 dir;
-            //dir.X = 0;
-            //dir.Y = 0;
+
+            Vector2 direction = new Vector2();
             
-            //if (controls.isPressed(Keys.D, Buttons.DPadRight) && this.pos.X < maxX-this.dim.X)
-            //    dir.X = 1;
-            //if (controls.isPressed(Keys.A, Buttons.DPadLeft) && this.pos.X > 0)
-            //    dir.X = -1;
-            //if (controls.isPressed(Keys.W, Buttons.DPadUp) && this.pos.Y > 0)
-            //    dir.Y = 1;
-            //if (controls.isPressed(Keys.S, Buttons.DPadDown) && this.pos.Y < maxY-this.dim.Y)
-            //    dir.Y = -1;
-
-            //dir.Normalize();
-
-            //this.pos.X += dir.X * 10;
-            //this.pos.Y += dir.Y * 10;
-
+            
             if (controls.isPressed(Keys.D, Buttons.DPadRight) && this.pos.X < maxX-this.dim.X)
-                pos.X += 10;
+                direction.X = 1;
             if (controls.isPressed(Keys.A, Buttons.DPadLeft) && this.pos.X > 0)
-                pos.X -= 10;
+                direction.X = -1;
             if (controls.isPressed(Keys.W, Buttons.DPadUp) && this.pos.Y > 0)
-                pos.Y -= 10;
+                direction.Y = -1;
             if (controls.isPressed(Keys.S, Buttons.DPadDown) && this.pos.Y < maxY-this.dim.Y)
-                pos.Y += 10;
+                direction.Y = 1;
+
+            if (Math.Abs((int)direction.Y) > 0)
+                if (Math.Abs((int)direction.X) > 0)
+                    direction.Normalize();
+
+            //Debug.WriteLine(direction.X + " " + direction.Y);
+
+            this.pos.X += (int)(direction.X * 10);
+            this.pos.Y += (int)(direction.Y * 10);
+
+            //if (controls.isPressed(Keys.D, Buttons.DPadRight) && this.pos.X < maxX-this.dim.X)
+            //    pos.X += 10;
+            //if (controls.isPressed(Keys.A, Buttons.DPadLeft) && this.pos.X > 0)
+            //    pos.X -= 10;
+            //if (controls.isPressed(Keys.W, Buttons.DPadUp) && this.pos.Y > 0)
+            //    pos.Y -= 10;
+            //if (controls.isPressed(Keys.S, Buttons.DPadDown) && this.pos.Y < maxY-this.dim.Y)
+            //    pos.Y += 10;
 
         }
        
