@@ -30,6 +30,8 @@ namespace EndangeredSong
         int screenWidth;
         int screenHeight;
 
+        //Texture2D background;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -48,7 +50,7 @@ namespace EndangeredSong
             // TODO: Add your initialization logic here
             IsMouseVisible = false;
             camera = new Camera(GraphicsDevice.Viewport);
-            GraphicsDevice.Viewport = new Viewport(0, 0, 2000, 1800);
+            GraphicsDevice.Viewport = new Viewport(0, 0, 4000, 3000);
             screenWidth = 980;
             screenHeight = 540;
             graphics.PreferredBackBufferWidth = screenWidth;  // set this value to the desired width of your window
@@ -72,8 +74,8 @@ namespace EndangeredSong
 
             for (int i = 0; i < 10; i++)    //randomly generate 10 obstacles and harmonians on the map
             {
-                Harmonian h = new Harmonian(rand.Next(0, 1800), rand.Next(0, 1600), 200, 125, dimX, dimY);
-                HidingPlace p = new HidingPlace(rand.Next(0, 1800), rand.Next(0, 1600), 400, 300);
+                Harmonian h = new Harmonian(rand.Next(0, dimX-100), rand.Next(0, dimY-100), 200, 125, dimX, dimY);
+                HidingPlace p = new HidingPlace(rand.Next(0, dimX-100), rand.Next(0, dimY-100), 400, 300);
                 undiscoveredHarmonians.Add(h);
                 hidingPlaces.Add(p);
             }

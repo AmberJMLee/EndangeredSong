@@ -55,13 +55,13 @@ namespace EndangeredSong
             Vector2 direction = new Vector2();
             
             
-            if (controls.isPressed(Keys.D, Buttons.DPadRight) && this.pos.X < maxX-this.dim.X)
+            if (controls.isPressed(Keys.Right, Buttons.DPadRight) && this.pos.X < maxX-this.dim.X)
                 direction.X = 1;
-            if (controls.isPressed(Keys.A, Buttons.DPadLeft) && this.pos.X > 0)
+            if (controls.isPressed(Keys.Left, Buttons.DPadLeft) && this.pos.X > 0)
                 direction.X = -1;
-            if (controls.isPressed(Keys.W, Buttons.DPadUp) && this.pos.Y > 0)
+            if (controls.isPressed(Keys.Up, Buttons.DPadUp) && this.pos.Y > 0)
                 direction.Y = -1;
-            if (controls.isPressed(Keys.S, Buttons.DPadDown) && this.pos.Y < maxY-this.dim.Y)
+            if (controls.isPressed(Keys.Down, Buttons.DPadDown) && this.pos.Y < maxY-this.dim.Y)
                 direction.Y = 1;
 
             if (Math.Abs((int)direction.Y) > 0)
