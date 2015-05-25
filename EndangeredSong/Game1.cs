@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using OpenTK;
+using System;
+using System.Collections;
 using System.Diagnostics;
 
 namespace EndangeredSong
@@ -15,13 +17,15 @@ namespace EndangeredSong
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Controls controls;
-        Harmonian h1;
-        BIOAgent b1;
-        Obstacle o1;
         MainMenu menu = new MainMenu();
         bool started;
         Camera camera;
-
+        Stack harmonians;
+        ArrayList undiscoveredHarmonians;
+        ArrayList obstacles;
+        Harmonian player;
+        BIOAgent b1;
+        Random rand;
         int dimX;
         int dimY;
 
@@ -45,20 +49,32 @@ namespace EndangeredSong
             IsMouseVisible = false;
             once = 1;
             camera = new Camera(GraphicsDevice.Viewport);
-
+            GraphicsDevice.Viewport = new Viewport(0, 0, 2000, 1800);
             graphics.PreferredBackBufferWidth = 1000;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 500;   // set this value to the desired height of your window          
             graphics.ApplyChanges();
             dimX = GraphicsDevice.Viewport.Bounds.Width;
             dimY = GraphicsDevice.Viewport.Bounds.Height;
             //Debug.WriteLine(dimX + " " + dimY);
-            h1 = new Harmonian(50, 50, 200, 125, dimX, dimY);
-            o1 = new Obstacle(100, 150, 250, 300);
+            undiscoveredHarmonians = new ArrayList();
+            obstacles = new ArrayList();
+            player = new Harmonian(500, 500, 200, 125, dimX, dimY);
+            //harmonians.Push(player);
             b1 = new BIOAgent(600, 300, 50, 50, dimX, dimY);
             started = false;
             controls = new Controls();
+            rand = new Random();
 
-            
+            for (int i = 0; i < 10; i++)
+            {
+                Harmonian h;
+                h = new Harmonian(rand.Next(0, 1800), rand.Next(0, 1600), 200, 125, dimX, dimY);
+                Obstacle o;
+                o = new Obstacle(rand.Next(0, 1800), rand.Next(0, 1600), 400, 300);
+                undiscoveredHarmonians.Add(h);
+                obstacles.Add(o);
+            }
+           
 
             base.Initialize();
         }
@@ -73,8 +89,13 @@ namespace EndangeredSong
             Content.RootDirectory = "Content";
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            h1.LoadContent(this.Content);
-            o1.LoadContent(this.Content);
+            player.LoadContent(this.Content);
+            for (int i = 0; i < 10; i++)
+            {
+                ((Harmonian)undiscoveredHarmonians[i]).LoadContent(this.Content);
+                ((Obstacle)obstacles[i]).LoadContent(this.Content);
+            }
+
             b1.LoadContent(this.Content);
             menu.LoadContent(this.Content);
             // TODO: use this.Content to load your game content here
@@ -111,10 +132,14 @@ namespace EndangeredSong
 
                 //the game begins!
                 controls.Update();
-                camera.Update(gameTime, h1);
-                h1.Update(controls, gameTime);
-                o1.Update(controls, gameTime);
-                b1.Update(controls, gameTime, h1);
+                camera.Update(gameTime, player);
+                player.Update(controls, gameTime);
+                for (int i = 0; i < 10; i++)
+                {
+                    //((Harmonian)undiscoveredHarmonians[i]).Update(controls, gameTime);
+                    ((Obstacle)obstacles[i]).Update(controls, gameTime);
+                }
+                b1.Update(controls, gameTime, player);
                 once--;
             }
             //Debug.WriteLine(h1.getX() + " " + h1.getY());
@@ -130,10 +155,15 @@ namespace EndangeredSong
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.transform);
-            h1.Draw(spriteBatch);
-            o1.Draw(spriteBatch);
+            for (int i = 0; i < 10; i++)
+            {
+                ((Harmonian)undiscoveredHarmonians[i]).Draw(spriteBatch);
+                ((Obstacle)obstacles[i]).Draw(spriteBatch);
+            }
             b1.Draw(spriteBatch);
-            menu.Draw(spriteBatch);
+            
+            if (!started)
+                menu.Draw(spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here
             base.Draw(gameTime);
