@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using OpenTK;
 using System.Diagnostics;
 
 namespace EndangeredSong
@@ -14,14 +15,17 @@ namespace EndangeredSong
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Controls controls;
-        GUIElement menu;
         Harmonian h1;
         BIOAgent b1;
         Obstacle o1;
+        MainMenu menu = new MainMenu();
+        bool started;
         Camera camera;
+
         int dimX;
         int dimY;
 
+        int once;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -39,7 +43,7 @@ namespace EndangeredSong
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = false;
-
+            once = 1;
             camera = new Camera(GraphicsDevice.Viewport);
 
             graphics.PreferredBackBufferWidth = 1000;  // set this value to the desired width of your window
@@ -51,7 +55,7 @@ namespace EndangeredSong
             h1 = new Harmonian(50, 50, 200, 125, dimX, dimY);
             o1 = new Obstacle(100, 150, 250, 300);
             b1 = new BIOAgent(600, 300, 50, 50, dimX, dimY);
-            menu = new GUIElement("menubackground");
+            started = false;
             controls = new Controls();
 
             
@@ -94,13 +98,25 @@ namespace EndangeredSong
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            controls.Update();
             // TODO: Add your update logic here
+            if(Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+                started = true;
+            }
+            if (started || once == 1)
+            {
+                //The start screen disappears
+                if(once == 0)
+                    menu.Start();
 
-            camera.Update(gameTime, h1);
-            h1.Update(controls, gameTime);
-            o1.Update(controls, gameTime);
-            b1.Update(controls, gameTime, h1);
+                //the game begins!
+                controls.Update();
+                camera.Update(gameTime, h1);
+                h1.Update(controls, gameTime);
+                o1.Update(controls, gameTime);
+                b1.Update(controls, gameTime, h1);
+                once--;
+            }
             //Debug.WriteLine(h1.getX() + " " + h1.getY());
 
             base.Update(gameTime);
@@ -120,7 +136,6 @@ namespace EndangeredSong
             menu.Draw(spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here
-
             base.Draw(gameTime);
         }
     }
