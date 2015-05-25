@@ -48,7 +48,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Harmonian.cs" />
     <Compile Include="Menu.cs" />
-    <Compile Include="Obstacle.cs">
+    <Compile Include="HidingPlace.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Program.cs" />
