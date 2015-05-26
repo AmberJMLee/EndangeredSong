@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 //using OpenTK;
 using System;
 using System.Collections;
@@ -13,6 +14,7 @@ namespace EndangeredSong
     /// </summary>
     public class Game1 : Game
     {
+        Song song;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Controls controls;
@@ -75,7 +77,7 @@ namespace EndangeredSong
             for (int i = 0; i < 10; i++)    //randomly generate 10 obstacles and harmonians on the map
             {
                 Harmonian h = new Harmonian(rand.Next(0, dimX-100), rand.Next(0, dimY-100), 200, 125, dimX, dimY);
-                HidingPlace p = new HidingPlace(rand.Next(0, dimX-100), rand.Next(0, dimY-100), 400, 300);
+                HidingPlace p = new HidingPlace(rand.Next(0, dimX-100), rand.Next(0, dimY-100), 500, 800);
                 undiscoveredHarmonians.Add(h);
                 hidingPlaces.Add(p);
             }
@@ -122,7 +124,6 @@ namespace EndangeredSong
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
             if(Keyboard.GetState().IsKeyDown(Keys.Space))
             {
                 started = true;
@@ -157,7 +158,7 @@ namespace EndangeredSong
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.MediumSeaGreen);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.transform);
             
             if (!started)

@@ -28,7 +28,7 @@ namespace EndangeredSong
 
         public void LoadContent(ContentManager content)
         {
-            image = content.Load<Texture2D>("Obstacle.png");
+            image = content.Load<Texture2D>("fullrightbigtree.png");
         }
 
         public void Draw(SpriteBatch sb)
