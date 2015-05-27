@@ -78,6 +78,7 @@ namespace EndangeredSong
 
         public void Move(Controls controls)
         {
+
             if(this.isPlayer && !this.isHid)
             {
                 Vector2 direction = new Vector2();

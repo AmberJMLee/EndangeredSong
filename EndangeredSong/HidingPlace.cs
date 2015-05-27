@@ -15,7 +15,6 @@ namespace EndangeredSong
         int maxCapacity;
         int currentCapacity;
         string assetName;
-        Rectangle rect;
         //SpriteFont font;
 
         public HidingPlace(int x, int y, int width, int height)
@@ -48,7 +47,6 @@ namespace EndangeredSong
         public void LoadContent(ContentManager content)
         {
             image = content.Load<Texture2D>("emptyrightbigtree.png");
-            //font = content.Load<SpriteFont>("Arial");
         }
 
         public Rectangle getRect()
@@ -59,16 +57,14 @@ namespace EndangeredSong
         public void Draw(SpriteBatch sb)
         {
             sb.Draw(image, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
-            //sb.DrawString(font, "hello", this.pos, Color.Black);
         }
         public void Update(Controls controls, GameTime gameTime, Harmonian player)
         {
-            if (this.rect.Intersects(player.getRect()))
-                Debug.WriteLine("hello");
-            if (this.rect.Intersects(player.getRect()) && controls.onPress(Keys.Space, Buttons.A))
+            Rectangle r = new Rectangle((int)player.getPosition().X, (int)player.getPosition().Y, (int)player.getDimension().X, (int)player.getDimension().Y);
+
+            if (controls.onPress(Keys.Space, Buttons.A) && rect.Intersects(r))
             {
                 player.Hide();
-                
             }
             
         }

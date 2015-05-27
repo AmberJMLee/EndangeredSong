@@ -57,6 +57,7 @@ namespace EndangeredSong
             IsMouseVisible = false;
             camera = new Camera(GraphicsDevice.Viewport);
             GraphicsDevice.Viewport = new Viewport(0, 0, 4000, 3000);
+            //GraphicsDevice.Viewport = new Viewport(0, 0, 1000, 800);
             screenWidth = 980;
             screenHeight = 540;
             graphics.PreferredBackBufferWidth = screenWidth;  // set this value to the desired width of your window
@@ -91,7 +92,9 @@ namespace EndangeredSong
                 undiscoveredHarmonians.Add(h);
                 hidingPlaces.Add(p);
             }
-           
+
+
+                
 
             base.Initialize();
         }
@@ -115,6 +118,8 @@ namespace EndangeredSong
                 ((Harmonian)undiscoveredHarmonians[i]).LoadContent(this.Content);
                 ((HidingPlace)hidingPlaces[i]).LoadContent(this.Content);
             }
+
+            
 
             b1.LoadContent(this.Content);
             menu.LoadContent(this.Content);
@@ -146,7 +151,7 @@ namespace EndangeredSong
             if (started)
             {
                 camera.Update(gameTime, player, screenWidth, screenHeight);
-                player.Update(controls, gameTime, player);
+                
                 for (int j = 0; j < 50; j++ )
                 {
                     ((Decor)decorations[j]).Update(controls, gameTime);
@@ -157,6 +162,7 @@ namespace EndangeredSong
                     ((HidingPlace)hidingPlaces[i]).Update(controls, gameTime, player);
                 }
                 b1.Update(controls, gameTime, player);
+                player.Update(controls, gameTime, player);
             }
             else
             {
@@ -165,7 +171,7 @@ namespace EndangeredSong
             }
 
             controls.Update();
-                             
+                          
             base.Update(gameTime);
         }
 
