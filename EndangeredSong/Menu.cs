@@ -10,7 +10,6 @@ namespace EndangeredSong
 {
     class Menu
     {
-        bool start;
         private Texture2D GUITexture;
         private Rectangle GUIRect;
         private string assetName;
@@ -23,7 +22,6 @@ namespace EndangeredSong
             this.pos.Y = y;
             this.dim.X = width;
             this.dim.Y = height;
-            start = false;
         }
         public Vector2 getPosition()
         {
