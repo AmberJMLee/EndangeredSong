@@ -77,6 +77,9 @@
     <Content Include="Content\BIOAgent.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\BIOAgentConceptArt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\emptyrightbigtree.png" />
     <Content Include="Content\EndangeredSong.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

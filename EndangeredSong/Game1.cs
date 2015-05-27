@@ -70,7 +70,7 @@ namespace EndangeredSong
             decorations = new ArrayList();
 
             player = new Harmonian(300, 250, 200, 125, dimX, dimY);
-            b1 = new BIOAgent(600, 300, 50, 50, dimX, dimY);
+            b1 = new BIOAgent(600, 300, 200, 300, dimX, dimY);
             menu = new Menu(0, 0, 980, 540);
 
             started = false;
@@ -87,7 +87,7 @@ namespace EndangeredSong
                 {
                     HidingPlace flower = new HidingPlace(rand.Next(0, dimX - 100), rand.Next(dimY - 100), 300, 300);
                     Harmonian h = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 125, dimX, dimY);
-                    HidingPlace p = new HidingPlace(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 500, 800);
+                    HidingPlace p = new HidingPlace(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 500, 550);
                     undiscoveredHarmonians.Add(h);
                     hidingPlaces.Add(p);
                 }
