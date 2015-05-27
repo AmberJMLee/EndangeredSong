@@ -70,7 +70,7 @@ namespace EndangeredSong
             decorations = new ArrayList();
 
             player = new Harmonian(300, 250, 200, 125, dimX, dimY);
-            b1 = new BIOAgent(600, 300, 200, 300, dimX, dimY);
+            b1 = new BIOAgent(600, 300, 200, 350, dimX, dimY);
             menu = new Menu(0, 0, 980, 540);
 
             started = false;
