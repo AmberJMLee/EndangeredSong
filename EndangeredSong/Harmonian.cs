@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace EndangeredSong
 {
@@ -23,6 +24,7 @@ namespace EndangeredSong
             this.pos.Y = y;
             this.dim.X = width;
             this.dim.Y = height;
+            this.rect = new Rectangle(x, y, x + width, y + height);
             this.maxX = maxX;
             this.maxY = maxY;
             this.isPlayer = false;
@@ -35,6 +37,7 @@ namespace EndangeredSong
             this.pos.Y = y;
             this.dim.X = width;
             this.dim.Y = height;
+            this.rect = new Rectangle(x, y, x + width, y + height);
             this.maxX = maxX;
             this.maxY = maxY;
             this.isPlayer = player;
@@ -52,7 +55,10 @@ namespace EndangeredSong
         {
             image = content.Load<Texture2D>("Harmonian.png");
         }
-
+        public Rectangle getRect()
+        {
+            return this.rect;
+        }
         public void Draw(SpriteBatch sb)
         {
             sb.Draw(image, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);

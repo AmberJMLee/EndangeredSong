@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 
+
 namespace EndangeredSong
 {
     class HidingPlace : Sprite
@@ -13,6 +14,7 @@ namespace EndangeredSong
         int maxCapacity;
         int currentCapacity;
         string assetName;
+        Rectangle rect;
         //SpriteFont font;
 
         public HidingPlace(int x, int y, int width, int height)
@@ -21,6 +23,7 @@ namespace EndangeredSong
             this.pos.Y = y;
             this.dim.X = width;
             this.dim.Y = height;
+            this.rect = new Rectangle(x, y, x + width, y + height);
             this.maxCapacity = 0;
             this.currentCapacity = 0;
 	    }
@@ -31,6 +34,7 @@ namespace EndangeredSong
             this.pos.Y = y;
             this.dim.X = width;
             this.dim.Y = height;
+            this.rect = new Rectangle(x, y, x + width, y + height);
             this.maxCapacity = capacity;
             this.currentCapacity = 0;
         }
@@ -46,6 +50,11 @@ namespace EndangeredSong
             //font = content.Load<SpriteFont>("Arial");
         }
 
+        public Rectangle getRect()
+        {
+            return this.rect;
+        }
+
         public void Draw(SpriteBatch sb)
         {
             sb.Draw(image, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
@@ -53,7 +62,8 @@ namespace EndangeredSong
         }
         public void Update(Controls controls, GameTime gameTime, Harmonian player)
         {
-            //if(this.)
+            if (this.rect.IntersectsWith(player.getRect()));
+            
         }
        
     }
