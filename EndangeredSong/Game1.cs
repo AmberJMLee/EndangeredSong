@@ -69,7 +69,7 @@ namespace EndangeredSong
             hidingPlaces = new ArrayList();
             decorations = new ArrayList();
 
-            player = new Harmonian(300, 250, 200, 125, dimX, dimY);
+            player = new Harmonian(300, 250, 200, 125, dimX, dimY, true);
             b1 = new BIOAgent(600, 300, 200, 350, dimX, dimY);
             menu = new Menu(0, 0, 980, 540);
 
@@ -83,7 +83,7 @@ namespace EndangeredSong
                 Decor dec = new Decor(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 50, 50);
                 decorations.Add(dec);
             }
-<<<<<<< HEAD
+
             for (int i = 0; i < 10; i++)    //randomly generate 10 obstacles and harmonians on the map
             {
                 Harmonian h = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 125, dimX, dimY);
@@ -91,7 +91,7 @@ namespace EndangeredSong
                 undiscoveredHarmonians.Add(h);
                 hidingPlaces.Add(p);
             }
-=======
+
                 for (int i = 0; i < 10; i++)    //randomly generate 10 obstacles and harmonians on the map
                 {
                     HidingPlace flower = new HidingPlace(rand.Next(0, dimX - 100), rand.Next(dimY - 100), 300, 300);
@@ -100,7 +100,7 @@ namespace EndangeredSong
                     undiscoveredHarmonians.Add(h);
                     hidingPlaces.Add(p);
                 }
->>>>>>> origin/master
+
            
 
             base.Initialize();
@@ -156,7 +156,7 @@ namespace EndangeredSong
             if (started)
             {
                 camera.Update(gameTime, player, screenWidth, screenHeight);
-                player.Update(controls, gameTime);
+                player.Update(controls, gameTime, player);
                 for (int j = 0; j < 50; j++ )
                 {
                     ((Decor)decorations[j]).Update(controls, gameTime);
@@ -164,7 +164,7 @@ namespace EndangeredSong
                 for (int i = 0; i < 10; i++)
                 {
                     //((Harmonian)undiscoveredHarmonians[i]).Update(controls, gameTime);
-                    ((HidingPlace)hidingPlaces[i]).Update(controls, gameTime);
+                    ((HidingPlace)hidingPlaces[i]).Update(controls, gameTime, player);
                 }
                 b1.Update(controls, gameTime, player);
             }

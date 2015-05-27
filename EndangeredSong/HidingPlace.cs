@@ -62,7 +62,7 @@ namespace EndangeredSong
         }
         public void Update(Controls controls, GameTime gameTime, Harmonian player)
         {
-            if (this.rect.IntersectsWith(player.getRect()));
+            //if (this.rect.IntersectsWith(player.getRect()));
             
         }
        
