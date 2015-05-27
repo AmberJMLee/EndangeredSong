@@ -51,9 +51,11 @@ namespace EndangeredSong
         public void Move(Controls controls, Harmonian player)
         {
             Vector2 direction = player.getPosition() -  this.pos;
-            direction.Normalize();
-
-            this.pos = this.pos + direction * 6;
+            if (direction.Length() > 10)
+            {
+                direction.Normalize();
+                this.pos = this.pos + direction * 6;
+            }
 
         }
     }

@@ -13,13 +13,27 @@ namespace EndangeredSong
         int maxCapacity;
         int currentCapacity;
         string assetName;
+        //SpriteFont font;
+
         public HidingPlace(int x, int y, int width, int height)
 	    {
             this.pos.X = x;
             this.pos.Y = y;
             this.dim.X = width;
             this.dim.Y = height;
+            this.maxCapacity = 0;
+            this.currentCapacity = 0;
 	    }
+
+        public HidingPlace(int x, int y, int width, int height, int capacity)
+        {
+            this.pos.X = x;
+            this.pos.Y = y;
+            this.dim.X = width;
+            this.dim.Y = height;
+            this.maxCapacity = capacity;
+            this.currentCapacity = 0;
+        }
         
         public Vector2 getPosition()
         {
@@ -28,17 +42,18 @@ namespace EndangeredSong
 
         public void LoadContent(ContentManager content)
         {
-            image = content.Load<Texture2D>("fullrightbigtree.png");
+            image = content.Load<Texture2D>("emptyrightbigtree.png");
+            //font = content.Load<SpriteFont>("Arial");
         }
 
         public void Draw(SpriteBatch sb)
         {
             sb.Draw(image, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
+            //sb.DrawString(font, "hello", this.pos, Color.Black);
         }
-        public void Update(Controls controls, GameTime gameTime)
+        public void Update(Controls controls, GameTime gameTime, Harmonian player)
         {
-            //update capacity 
-            //bluh
+            //if(this.)
         }
        
     }
