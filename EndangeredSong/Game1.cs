@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 //using OpenTK;
 using System;
 using System.Collections;
@@ -14,7 +15,7 @@ namespace EndangeredSong
     /// </summary>
     public class Game1 : Game
     {
-        Song song;
+  //      Song song;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Controls controls;
@@ -36,6 +37,7 @@ namespace EndangeredSong
         int screenWidth;
         int screenHeight;
 
+        SoundEffect song1;
         //Texture2D background;
 
         public Game1()
@@ -93,7 +95,9 @@ namespace EndangeredSong
                 hidingPlaces.Add(p);
             }
 
-
+            song1 = Content.Load<SoundEffect>(@"Harmonian1");
+            var songInstance = song1.CreateInstance();
+            songInstance.Play();
                 
 
             base.Initialize();
@@ -107,6 +111,7 @@ namespace EndangeredSong
         {
             Content.RootDirectory = "Content";
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
 
             player.LoadContent(this.Content);
             for (int j = 0; j < 50; j++ )
@@ -150,6 +155,7 @@ namespace EndangeredSong
 
             if (started)
             {
+       //         song1.Play();
                 camera.Update(gameTime, player, screenWidth, screenHeight);
                 
                 for (int j = 0; j < 50; j++ )

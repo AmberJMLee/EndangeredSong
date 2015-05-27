@@ -117,6 +117,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\WindowsGL\Debug\EndangeredSong.vshost.exe.manifest" />
+    <None Include="Content\Harmonian1.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="obj\x86\Debug\build.force" />
     <None Include="obj\x86\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="obj\x86\Debug\EndangeredSong.csprojResolveAssemblyReference.cache" />
