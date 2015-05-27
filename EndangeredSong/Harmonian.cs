@@ -47,10 +47,7 @@ namespace EndangeredSong
         {
             return this.rect;
         }
-        public void Hide()
-        {
-            this.isHid = !this.isHid;
-        }
+        
         public void Draw(SpriteBatch sb)
         {
             if(!this.isHid)
@@ -59,33 +56,26 @@ namespace EndangeredSong
 
         public void Update(Controls controls, GameTime gameTime, Player player)
         {
-            Move(controls);
+            Move(controls, player);
+            if (this.isFound)
+                this.isHid = player.isHidden();
             
         }
 
-        public void Move(Controls controls)
+        public void Move(Controls controls, Player player)
         {
 
-            if(!this.isHid && this.isFound)
-            {
-                Vector2 direction = new Vector2();
+            Vector2 direction = player.getPosition() -  this.pos;
+
+            if (direction.Length() < 50)
+                this.isFound = true;
             
-                if (controls.isPressed(Keys.Right, Buttons.DPadRight) && this.pos.X < maxX-this.dim.X)
-                    direction.X = 1;
-                if (controls.isPressed(Keys.Left, Buttons.DPadLeft) && this.pos.X > 0)
-                    direction.X = -1;
-                if (controls.isPressed(Keys.Up, Buttons.DPadUp) && this.pos.Y > 0)
-                    direction.Y = -1;
-                if (controls.isPressed(Keys.Down, Buttons.DPadDown) && this.pos.Y < maxY-this.dim.Y)
-                    direction.Y = 1;
-
-                if (Math.Abs((int)direction.Y) > 0)
-                    if (Math.Abs((int)direction.X) > 0)
-                        direction.Normalize();
-
-            this.pos.X += (int)(direction.X * 10);
-            this.pos.Y += (int)(direction.Y * 10);
+            if (direction.Length() > 20 && this.isFound)
+            {
+                direction.Normalize();
+                this.pos = this.pos + direction * 10;
             }
+            
 
 
         }

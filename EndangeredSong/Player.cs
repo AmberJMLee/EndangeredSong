@@ -43,7 +43,10 @@ namespace EndangeredSong
         {
             image = content.Load<Texture2D>("Harmonian.png");
         }
-
+        public bool isHidden()
+        {
+            return this.isHid;
+        }
         public void Hide()
         {
             this.isHid = !this.isHid;
