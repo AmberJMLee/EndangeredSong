@@ -24,7 +24,7 @@ namespace EndangeredSong
             this.pos.Y = y;
             this.dim.X = width;
             this.dim.Y = height;
-            this.rect = new Rectangle(x, y, x + width, y + height);
+            this.rect = new Rectangle(x, y, width, height);
             this.maxX = maxX;
             this.maxY = maxY;
             this.isPlayer = false;
@@ -37,7 +37,7 @@ namespace EndangeredSong
             this.pos.Y = y;
             this.dim.X = width;
             this.dim.Y = height;
-            this.rect = new Rectangle(x, y, x + width, y + height);
+            this.rect = new Rectangle(x, y, width, height);
             this.maxX = maxX;
             this.maxY = maxY;
             this.isPlayer = player;
@@ -59,14 +59,21 @@ namespace EndangeredSong
         {
             return this.rect;
         }
+        public void Hide()
+        {
+            this.isHid = !this.isHid;
+        }
         public void Draw(SpriteBatch sb)
         {
-            sb.Draw(image, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
+            if(!this.isHid)
+                sb.Draw(image, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
         }
 
         public void Update(Controls controls, GameTime gameTime, Harmonian player)
         {
             Move(controls);
+            //if (this.isPlayer)
+                //Debug.WriteLine(this.isHid);
         }
 
         public void Move(Controls controls)

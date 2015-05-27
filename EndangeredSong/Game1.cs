@@ -91,16 +91,6 @@ namespace EndangeredSong
                 undiscoveredHarmonians.Add(h);
                 hidingPlaces.Add(p);
             }
-
-                for (int i = 0; i < 10; i++)    //randomly generate 10 obstacles and harmonians on the map
-                {
-                    HidingPlace flower = new HidingPlace(rand.Next(0, dimX - 100), rand.Next(dimY - 100), 300, 300);
-                    Harmonian h = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 125, dimX, dimY);
-                    HidingPlace p = new HidingPlace(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 500, 550);
-                    undiscoveredHarmonians.Add(h);
-                    hidingPlaces.Add(p);
-                }
-
            
 
             base.Initialize();
@@ -163,7 +153,7 @@ namespace EndangeredSong
                 }
                 for (int i = 0; i < 10; i++)
                 {
-                    //((Harmonian)undiscoveredHarmonians[i]).Update(controls, gameTime);
+                    ((Harmonian)undiscoveredHarmonians[i]).Update(controls, gameTime, player);
                     ((HidingPlace)hidingPlaces[i]).Update(controls, gameTime, player);
                 }
                 b1.Update(controls, gameTime, player);

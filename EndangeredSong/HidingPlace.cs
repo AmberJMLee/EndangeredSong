@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
+using System.Diagnostics;
 
 
 namespace EndangeredSong
@@ -23,7 +24,7 @@ namespace EndangeredSong
             this.pos.Y = y;
             this.dim.X = width;
             this.dim.Y = height;
-            this.rect = new Rectangle(x, y, x + width, y + height);
+            this.rect = new Rectangle(x, y, width, height);
             this.maxCapacity = 0;
             this.currentCapacity = 0;
 	    }
@@ -62,7 +63,13 @@ namespace EndangeredSong
         }
         public void Update(Controls controls, GameTime gameTime, Harmonian player)
         {
-            //if (this.rect.IntersectsWith(player.getRect()));
+            if (this.rect.Intersects(player.getRect()))
+                Debug.WriteLine("hello");
+            if (this.rect.Intersects(player.getRect()) && controls.onPress(Keys.Space, Buttons.A))
+            {
+                player.Hide();
+                
+            }
             
         }
        
