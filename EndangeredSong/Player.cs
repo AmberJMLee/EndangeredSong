@@ -10,27 +10,27 @@ using System.Drawing;
 
 namespace EndangeredSong
 {
-    class Harmonian : Sprite
-    {
-        //string musicFile;
+    class Player : Sprite
+    {  
+   
         bool isHid;
-        bool isFound;
         int maxX;
         int maxY;
-        Rectangle rect;
-        public Harmonian(int x, int y, int width, int height, int maxX, int maxY)
-	    {            
+        
+        public Player (int x, int y, int width, int height, int maxX, int maxY)
+	    {
+            
             this.pos.X = x;
             this.pos.Y = y;
             this.dim.X = width;
             this.dim.Y = height;
+
             this.maxX = maxX;
             this.maxY = maxY;
-            this.rect = new Rectangle(x, y, width, height);
-            this.isHid = false;
-            this.isFound = false;
-	    }
 
+            this.isHid = false;
+	    }
+       
         public Vector2 getPosition()
         {
             return this.pos;
@@ -43,10 +43,7 @@ namespace EndangeredSong
         {
             image = content.Load<Texture2D>("Harmonian.png");
         }
-        public Rectangle getRect()
-        {
-            return this.rect;
-        }
+
         public void Hide()
         {
             this.isHid = !this.isHid;
@@ -57,16 +54,15 @@ namespace EndangeredSong
                 sb.Draw(image, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
         }
 
-        public void Update(Controls controls, GameTime gameTime, Player player)
+        public void Update(Controls controls, GameTime gameTime)
         {
             Move(controls);
-            
         }
 
         public void Move(Controls controls)
         {
 
-            if(!this.isHid && this.isFound)
+            if(!this.isHid)
             {
                 Vector2 direction = new Vector2();
             
@@ -91,4 +87,5 @@ namespace EndangeredSong
         }
        
     }
+
 }

@@ -43,12 +43,12 @@ namespace EndangeredSong
         }
 
 
-        public void Update(Controls controls, GameTime gameTime, Harmonian player)
+        public void Update(Controls controls, GameTime gameTime, Player player)
         {
             Move(controls, player);
         }
 
-        public void Move(Controls controls, Harmonian player)
+        public void Move(Controls controls, Player player)
         {
             Vector2 direction = player.getPosition() -  this.pos;
             if (direction.Length() > 10)

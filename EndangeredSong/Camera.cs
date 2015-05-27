@@ -17,7 +17,7 @@ namespace EndangeredSong
             view = newView;
         }
 
-        public void Update(GameTime gameTime, Harmonian player, int screenWidth, int screenHeight)
+        public void Update(GameTime gameTime, Player player, int screenWidth, int screenHeight)
         {
             center = new Vector2(player.getPosition().X + (player.getDimension().X / 2) - (screenWidth / 2), player.getPosition().Y + (player.getDimension().Y / 2) - (screenHeight / 2));
             transform = Matrix.CreateScale(new Vector3(1, 1, 0)) * Matrix.CreateTranslation(new Vector3(-center.X, -center.Y, 0));

@@ -28,7 +28,7 @@ namespace EndangeredSong
         ArrayList hidingPlaces;
         ArrayList decorations;
 
-        Harmonian player;
+        Player player;
         BIOAgent b1;
         Random rand;
         int dimX;
@@ -70,7 +70,7 @@ namespace EndangeredSong
             hidingPlaces = new ArrayList();
             decorations = new ArrayList();
 
-            player = new Harmonian(300, 250, 200, 125, dimX, dimY, true);
+            player = new Player(300, 250, 200, 125, dimX, dimY);
             b1 = new BIOAgent(600, 300, 200, 350, dimX, dimY);
             menu = new Menu(0, 0, 980, 540);
 
@@ -162,7 +162,7 @@ namespace EndangeredSong
                     ((HidingPlace)hidingPlaces[i]).Update(controls, gameTime, player);
                 }
                 b1.Update(controls, gameTime, player);
-                player.Update(controls, gameTime, player);
+                player.Update(controls, gameTime);
             }
             else
             {

@@ -14,7 +14,8 @@ namespace EndangeredSong
     {
         int maxCapacity;
         int currentCapacity;
-        string assetName;
+
+        Rectangle rect;
         //SpriteFont font;
 
         public HidingPlace(int x, int y, int width, int height)
@@ -58,7 +59,7 @@ namespace EndangeredSong
         {
             sb.Draw(image, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
         }
-        public void Update(Controls controls, GameTime gameTime, Harmonian player)
+        public void Update(Controls controls, GameTime gameTime, Player player)
         {
             Rectangle r = new Rectangle((int)player.getPosition().X, (int)player.getPosition().Y, (int)player.getDimension().X, (int)player.getDimension().Y);
 
