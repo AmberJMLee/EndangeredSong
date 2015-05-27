@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-//using OpenTK;
 using System;
 using System.Collections;
 using System.Diagnostics;
@@ -14,7 +13,6 @@ namespace EndangeredSong
     /// </summary>
     public class Game1 : Game
     {
-        Song song;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Controls controls;
@@ -22,8 +20,7 @@ namespace EndangeredSong
         Menu menu;
         bool started;
         Camera camera;
-
-
+        
         ArrayList undiscoveredHarmonians;
         ArrayList hidingPlaces;
         ArrayList decorations;
@@ -35,8 +32,6 @@ namespace EndangeredSong
         int dimY;
         int screenWidth;
         int screenHeight;
-
-        //Texture2D background;
 
         public Game1()
         {
@@ -56,7 +51,7 @@ namespace EndangeredSong
             // TODO: Add your initialization logic here
             IsMouseVisible = false;
             camera = new Camera(GraphicsDevice.Viewport);
-            GraphicsDevice.Viewport = new Viewport(0, 0, 4000, 3000);
+            GraphicsDevice.Viewport = new Viewport(0, 0, 4000, 3000); //size of map
             screenWidth = 980;
             screenHeight = 540;
             graphics.PreferredBackBufferWidth = screenWidth;  // set this value to the desired width of your window
@@ -69,7 +64,7 @@ namespace EndangeredSong
             hidingPlaces = new ArrayList();
             decorations = new ArrayList();
 
-            player = new Harmonian(300, 250, 200, 125, dimX, dimY);
+            player = new Harmonian(300, 250, 200, 125, dimX, dimY, true);
             b1 = new BIOAgent(600, 300, 200, 300, dimX, dimY);
             menu = new Menu(0, 0, 980, 540);
 
@@ -83,14 +78,13 @@ namespace EndangeredSong
                 Decor dec = new Decor(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 50, 50);
                 decorations.Add(dec);
             }
-                for (int i = 0; i < 10; i++)    //randomly generate 10 obstacles and harmonians on the map
-                {
-                    HidingPlace flower = new HidingPlace(rand.Next(0, dimX - 100), rand.Next(dimY - 100), 300, 300);
-                    Harmonian h = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 125, dimX, dimY);
-                    HidingPlace p = new HidingPlace(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 500, 550);
-                    undiscoveredHarmonians.Add(h);
-                    hidingPlaces.Add(p);
-                }
+            for (int i = 0; i < 10; i++)    //randomly generate 10 obstacles and harmonians on the map
+            {
+                Harmonian h = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 125, dimX, dimY);
+                HidingPlace p = new HidingPlace(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 500, 550, rand.Next(0, 4));
+                undiscoveredHarmonians.Add(h);
+                hidingPlaces.Add(p);
+            }
            
 
             base.Initialize();
@@ -143,22 +137,22 @@ namespace EndangeredSong
                 started = true;
             }
 
-            if (started)
+            if (started) //game has started
             {
                 camera.Update(gameTime, player, screenWidth, screenHeight);
-                player.Update(controls, gameTime);
+                player.Update(controls, gameTime, player);
                 for (int j = 0; j < 50; j++ )
                 {
                     ((Decor)decorations[j]).Update(controls, gameTime);
                 }
                 for (int i = 0; i < 10; i++)
                 {
-                    //((Harmonian)undiscoveredHarmonians[i]).Update(controls, gameTime);
-                    ((HidingPlace)hidingPlaces[i]).Update(controls, gameTime);
+                    ((Harmonian)undiscoveredHarmonians[i]).Update(controls, gameTime, player);
+                    ((HidingPlace)hidingPlaces[i]).Update(controls, gameTime, player);
                 }
                 b1.Update(controls, gameTime, player);
             }
-            else
+            else //still on menu
             {
                 menu.Update();
                 camera.Update(gameTime, menu, screenWidth, screenHeight);
