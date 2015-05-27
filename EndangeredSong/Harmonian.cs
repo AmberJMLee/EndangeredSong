@@ -14,8 +14,8 @@ namespace EndangeredSong
         //string musicFile;
         bool isHid;
         int maxX;
-        int maxY;      
-
+        int maxY;
+        bool isPlayer;
         public Harmonian(int x, int y, int width, int height, int maxX, int maxY)
 	    {
             
@@ -25,7 +25,21 @@ namespace EndangeredSong
             this.dim.Y = height;
             this.maxX = maxX;
             this.maxY = maxY;
+            this.isPlayer = false;
+            this.isHid = false;
 	    }
+        public Harmonian(int x, int y, int width, int height, int maxX, int maxY, bool player)
+        {
+
+            this.pos.X = x;
+            this.pos.Y = y;
+            this.dim.X = width;
+            this.dim.Y = height;
+            this.maxX = maxX;
+            this.maxY = maxY;
+            this.isPlayer = player;
+            this.isHid = false;
+        }
         public Vector2 getPosition()
         {
             return this.pos;
@@ -44,43 +58,34 @@ namespace EndangeredSong
             sb.Draw(image, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
         }
 
-        public void Update(Controls controls, GameTime gameTime)
+        public void Update(Controls controls, GameTime gameTime, Harmonian player)
         {
             Move(controls);
         }
 
         public void Move(Controls controls)
         {
-
-            Vector2 direction = new Vector2();
+            if(this.isPlayer && !this.isHid)
+            {
+                Vector2 direction = new Vector2();
             
-            
-            if (controls.isPressed(Keys.Right, Buttons.DPadRight) && this.pos.X < maxX-this.dim.X)
-                direction.X = 1;
-            if (controls.isPressed(Keys.Left, Buttons.DPadLeft) && this.pos.X > 0)
-                direction.X = -1;
-            if (controls.isPressed(Keys.Up, Buttons.DPadUp) && this.pos.Y > 0)
-                direction.Y = -1;
-            if (controls.isPressed(Keys.Down, Buttons.DPadDown) && this.pos.Y < maxY-this.dim.Y)
-                direction.Y = 1;
+                if (controls.isPressed(Keys.Right, Buttons.DPadRight) && this.pos.X < maxX-this.dim.X)
+                    direction.X = 1;
+                if (controls.isPressed(Keys.Left, Buttons.DPadLeft) && this.pos.X > 0)
+                    direction.X = -1;
+                if (controls.isPressed(Keys.Up, Buttons.DPadUp) && this.pos.Y > 0)
+                    direction.Y = -1;
+                if (controls.isPressed(Keys.Down, Buttons.DPadDown) && this.pos.Y < maxY-this.dim.Y)
+                    direction.Y = 1;
 
-            if (Math.Abs((int)direction.Y) > 0)
-                if (Math.Abs((int)direction.X) > 0)
-                    direction.Normalize();
-
-            //Debug.WriteLine(direction.X + " " + direction.Y);
+                if (Math.Abs((int)direction.Y) > 0)
+                    if (Math.Abs((int)direction.X) > 0)
+                        direction.Normalize();
 
             this.pos.X += (int)(direction.X * 10);
             this.pos.Y += (int)(direction.Y * 10);
+            }
 
-            //if (controls.isPressed(Keys.D, Buttons.DPadRight) && this.pos.X < maxX-this.dim.X)
-            //    pos.X += 10;
-            //if (controls.isPressed(Keys.A, Buttons.DPadLeft) && this.pos.X > 0)
-            //    pos.X -= 10;
-            //if (controls.isPressed(Keys.W, Buttons.DPadUp) && this.pos.Y > 0)
-            //    pos.Y -= 10;
-            //if (controls.isPressed(Keys.S, Buttons.DPadDown) && this.pos.Y < maxY-this.dim.Y)
-            //    pos.Y += 10;
 
         }
        
