@@ -12,7 +12,7 @@ namespace EndangeredSong
     {
         int maxCapacity;
         int currentCapacity;
-
+        string assetName;
         public HidingPlace(int x, int y, int width, int height)
 	    {
             this.pos.X = x;
