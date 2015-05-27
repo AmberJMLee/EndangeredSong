@@ -45,6 +45,7 @@
     <Compile Include="Controls.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Decor.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Harmonian.cs" />
     <Compile Include="Menu.cs" />
