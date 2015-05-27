@@ -79,6 +79,9 @@
     <Content Include="Content\EndangeredSong.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Flower.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\fullrightbigtree.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -22,8 +22,11 @@ namespace EndangeredSong
         Menu menu;
         bool started;
         Camera camera;
+
+
         ArrayList undiscoveredHarmonians;
         ArrayList hidingPlaces;
+
         Harmonian player;
         BIOAgent b1;
         Random rand;
@@ -76,6 +79,7 @@ namespace EndangeredSong
 
             for (int i = 0; i < 10; i++)    //randomly generate 10 obstacles and harmonians on the map
             {
+                HidingPlace flower = new HidingPlace(rand.Next(0, dimX - 100), rand.Next(dimY - 100), 300, 300);
                 Harmonian h = new Harmonian(rand.Next(0, dimX-100), rand.Next(0, dimY-100), 200, 125, dimX, dimY);
                 HidingPlace p = new HidingPlace(rand.Next(0, dimX-100), rand.Next(0, dimY-100), 500, 800);
                 undiscoveredHarmonians.Add(h);
@@ -158,7 +162,7 @@ namespace EndangeredSong
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.MediumSeaGreen);
+            GraphicsDevice.Clear(Color.DarkOliveGreen);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.transform);
             
             if (!started)
