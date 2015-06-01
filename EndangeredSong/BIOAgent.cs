@@ -16,6 +16,8 @@ namespace EndangeredSong
 	    int maxX;
         int maxY;
 
+        int frameRate;
+
         public BIOAgent(int x, int y, int width, int height, int maxX, int maxY)
 	    {
             this.pos.X = x;
@@ -24,7 +26,7 @@ namespace EndangeredSong
             this.dim.Y = height;
             this.maxX = maxX;
             this.maxY = maxY;
-         
+            this.frameRate = 1;
 	    }
         public Vector2 getPosition()
         {
@@ -34,7 +36,7 @@ namespace EndangeredSong
 
         public void LoadContent(ContentManager content)
         {
-            image = content.Load<Texture2D>("BIOAgentConceptArt.png");
+            image = content.Load<Texture2D>("sprite.gif");
         }
 
         public void Draw(SpriteBatch sb)

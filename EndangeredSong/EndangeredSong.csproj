@@ -75,12 +75,10 @@
     <Content Include="bin\WindowsGL\Debug\EndangeredSong.vshost.exe" />
     <Content Include="bin\WindowsGL\Debug\MonoGame.Framework.dll" />
     <Content Include="bin\WindowsGL\Debug\OpenTK.dll" />
-    <Content Include="Content\BIOAgent.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\BIOAgentConceptArt.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\BIOAgentConceptArt2.png" />
     <Content Include="Content\emptyrightbigtree.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -96,6 +94,7 @@
     <Content Include="Content\Harmonian.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Harmonian1.mp3" />
     <Content Include="Content\menubackground.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -104,6 +103,9 @@
     </Content>
     <Content Include="Content\semifullrightbigtree.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\sprite.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
