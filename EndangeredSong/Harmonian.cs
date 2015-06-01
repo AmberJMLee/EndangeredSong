@@ -65,12 +65,12 @@ namespace EndangeredSong
         public void Move(Controls controls, Player player)
         {
 
-            Vector2 direction = player.getPosition() -  this.pos;
+            Vector2 direction = player.getPosition() -  this.pos;            
 
             if (direction.Length() < 50)
                 this.isFound = true;
             
-            if (direction.Length() > 20 && this.isFound)
+            if (direction.Length() > 30 && this.isFound)
             {
                 direction.Normalize();
                 this.pos = this.pos + direction * 10;

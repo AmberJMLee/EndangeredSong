@@ -40,6 +40,8 @@ namespace EndangeredSong
         SoundEffect song1;
         //Texture2D background;
 
+
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -95,6 +97,7 @@ namespace EndangeredSong
                 hidingPlaces.Add(p);
             }
 
+
             song1 = Content.Load<SoundEffect>(@"Harmonian1");
             var songInstance = song1.CreateInstance();
             songInstance.Play();
@@ -112,22 +115,16 @@ namespace EndangeredSong
             Content.RootDirectory = "Content";
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
-            player.LoadContent(this.Content);
-            for (int j = 0; j < 50; j++ )
-            {
-                ((Decor)decorations[j]).LoadContent(this.Content);
-            }
-            for (int i = 0; i < 10; i++)
-            {
-                ((Harmonian)undiscoveredHarmonians[i]).LoadContent(this.Content);
-                ((HidingPlace)hidingPlaces[i]).LoadContent(this.Content);
-            }
-
-            
-
             b1.LoadContent(this.Content);
-            menu.LoadContent(this.Content);
+            player.LoadContent(this.Content);
+            menu.LoadContent(this.Content);            
+
+            for (int j = 0; j < decorations.Count; j++)
+                ((Decor)decorations[j]).LoadContent(this.Content);
+            for (int i = 0; i < hidingPlaces.Count; i++)                           
+                ((HidingPlace)hidingPlaces[i]).LoadContent(this.Content);            
+            for (int k = 0; k < undiscoveredHarmonians.Count; k++)
+                ((Harmonian)undiscoveredHarmonians[k]).LoadContent(this.Content);            
         }
 
         /// <summary>
@@ -149,35 +146,31 @@ namespace EndangeredSong
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             if(Keyboard.GetState().IsKeyDown(Keys.Space))
-            {
                 started = true;
-            }
+
+            controls.Update();
 
             if (started)
             {
-       //         song1.Play();
                 camera.Update(gameTime, player, screenWidth, screenHeight);
                 
-                for (int j = 0; j < 50; j++ )
-                {
+                for (int j = 0; j < decorations.Count; j++ )
                     ((Decor)decorations[j]).Update(controls, gameTime);
-                }
-                for (int i = 0; i < 10; i++)
-                {
-                    ((Harmonian)undiscoveredHarmonians[i]).Update(controls, gameTime, player);
+                for (int i = 0; i < hidingPlaces.Count; i++)
                     ((HidingPlace)hidingPlaces[i]).Update(controls, gameTime, player);
-                }
+                for (int k = 0; k < undiscoveredHarmonians.Count; k++ )
+                    ((Harmonian)undiscoveredHarmonians[k]).Update(controls, gameTime, player);
+
                 b1.Update(controls, gameTime, player);
                 player.Update(controls, gameTime);
             }
+
             else
             {
                 menu.Update();
                 camera.Update(gameTime, menu, screenWidth, screenHeight);
             }
-
-            controls.Update();
-                          
+            
             base.Update(gameTime);
         }
 
@@ -194,15 +187,13 @@ namespace EndangeredSong
                 menu.Draw(spriteBatch);
             else
             {
-                for (int j = 0; j < 50; j++ )
-                {
+                for (int j = 0; j < decorations.Count; j++ )
                     ((Decor)decorations[j]).Draw(spriteBatch);
-                }
-                for (int i = 0; i < 10; i++)
-                {
-                    ((Harmonian)undiscoveredHarmonians[i]).Draw(spriteBatch);
+                for (int i = 0; i < hidingPlaces.Count; i++)  
                     ((HidingPlace)hidingPlaces[i]).Draw(spriteBatch);
-                }
+                for (int k = 0; k < undiscoveredHarmonians.Count; k ++ )
+                    ((Harmonian)undiscoveredHarmonians[k]).Draw(spriteBatch);
+
                 b1.Draw(spriteBatch);
                 player.Draw(spriteBatch);
             }
