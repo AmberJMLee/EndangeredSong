@@ -38,6 +38,7 @@ namespace EndangeredSong
         int screenHeight;
 
         SoundEffect song1;
+        SoundEffect song2;
         //Texture2D background;
 
 
@@ -100,6 +101,7 @@ namespace EndangeredSong
 
             song1 = Content.Load<SoundEffect>(@"Harmonian1");
             var songInstance = song1.CreateInstance();
+            songInstance.IsLooped = true;
             songInstance.Play();
                 
 
