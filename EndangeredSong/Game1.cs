@@ -186,6 +186,7 @@ namespace EndangeredSong
             GraphicsDevice.Clear(Color.DarkOliveGreen);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.transform);
             
+
             if (!started)
                 menu.Draw(spriteBatch);
             else
@@ -199,7 +200,8 @@ namespace EndangeredSong
 
                 b1.Draw(spriteBatch);
                 player.Draw(spriteBatch);
-                map.Draw(spriteBatch, (int)(player.getPosition().X + 300), (int)(player.getPosition().Y - 200));
+                //map.Draw(spriteBatch, (int)(player.getPosition().X + 300), (int)(player.getPosition().Y - 200));
+                map.Draw(spriteBatch, (int)camera.center.X + 800, (int)camera.center.Y);
                 
             };
                         

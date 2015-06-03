@@ -11,7 +11,7 @@ namespace EndangeredSong
     {
         public Matrix transform;
         Viewport view;
-        Vector2 center;
+        public Vector2 center;
         public Camera(Viewport newView)
         {
             view = newView;
