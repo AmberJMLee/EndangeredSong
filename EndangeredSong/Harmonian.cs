@@ -18,6 +18,7 @@ namespace EndangeredSong
         int maxX;
         int maxY;
         Rectangle rect;
+        int foundPosition;
         public Harmonian(int x, int y, int width, int height, int maxX, int maxY)
 	    {            
             this.pos.X = x;
@@ -29,6 +30,7 @@ namespace EndangeredSong
             this.rect = new Rectangle(x, y, width, height);
             this.isHid = false;
             this.isFound = false;
+            this.foundPosition = -1;
 	    }
 
         public Vector2 getPosition()
@@ -64,16 +66,22 @@ namespace EndangeredSong
 
         public void Move(Controls controls, Player player)
         {
-
-            Vector2 direction = player.getPosition() -  this.pos;            
-
-            if (direction.Length() < 50)
-                this.isFound = true;
+            Vector2 direction = player.getPosition() - this.pos;
             
-            if (direction.Length() > 30 && this.isFound)
+
+            if (direction.Length() < 150 && !this.isFound)
             {
+                this.foundPosition = player.getNumFound();
+                player.foundHarmonian();
+                this.isFound = true;
+            }
+                
+            
+            if (direction.Length() > 100 && this.isFound)
+            {
+                direction += player.getFollowingPosition(this.foundPosition % 8);
                 direction.Normalize();
-                this.pos = this.pos + direction * 10;
+                this.pos = this.pos + direction * 5;
             }
             
 

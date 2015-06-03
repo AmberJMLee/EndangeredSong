@@ -7,15 +7,17 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using System.Diagnostics;
 using System.Drawing;
+using System.Collections;
 
 namespace EndangeredSong
 {
     class Player : Sprite
-    {  
-   
+    {
+        int[,] followingPositions;
         bool isHid;
         int maxX;
         int maxY;
+        int numFound;
         
         public Player (int x, int y, int width, int height, int maxX, int maxY)
 	    {
@@ -29,15 +31,31 @@ namespace EndangeredSong
             this.maxY = maxY;
 
             this.isHid = false;
+
+            followingPositions = new int[8, 2] {{-60, -60},{0, -80},{60, -60},{80, 0},{60, 60},{0, 80},{-60, 60},{-80, 0}};
+            numFound = 0;
 	    }
        
         public Vector2 getPosition()
         {
             return this.pos;
+            //return this.pos + (this.dim / 2);
         }
+        //public Vector2 getCenterPosition()
+        //{
+        //    return this.pos + this.dim/2;
+        //}
         public Vector2 getDimension()
         {
             return this.dim;
+        }
+        public int getNumFound()
+        {
+            return this.numFound;
+        }
+        public Vector2 getFollowingPosition(int x)
+        {
+            return new Vector2(followingPositions[x, 0], followingPositions[x, 1]);
         }
         public void LoadContent(ContentManager content)
         {
@@ -46,6 +64,10 @@ namespace EndangeredSong
         public bool isHidden()
         {
             return this.isHid;
+        }
+        public void foundHarmonian()
+        {
+            this.numFound++;
         }
         public void Hide()
         {
@@ -82,8 +104,8 @@ namespace EndangeredSong
                     if (Math.Abs((int)direction.X) > 0)
                         direction.Normalize();
 
-            this.pos.X += (int)(direction.X * 10);
-            this.pos.Y += (int)(direction.Y * 10);
+            this.pos.X += (int)(direction.X * 6);
+            this.pos.Y += (int)(direction.Y * 6);
             }
 
 
