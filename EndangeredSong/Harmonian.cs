@@ -69,19 +69,23 @@ namespace EndangeredSong
             Vector2 direction = player.getPosition() - this.pos;
             
 
-            if (direction.Length() < 150 && !this.isFound)
+            if (direction.Length() < 100 && !this.isFound)
             {
                 this.foundPosition = player.getNumFound();
                 player.foundHarmonian();
                 this.isFound = true;
             }
                 
-            
-            if (direction.Length() > 100 && this.isFound)
+            if (this.isFound)
             {
-                direction += player.getFollowingPosition(this.foundPosition % 8);
-                direction.Normalize();
-                this.pos = this.pos + direction * 5;
+                
+                //direction += player.getFollowingPosition(this.foundPosition % 8);
+                if (direction.Length() > 100)
+                {
+                    direction += player.getFollowingPosition(this.foundPosition % 8);
+                    direction.Normalize();
+                    this.pos = this.pos + direction * 6;
+                }
             }
             
 
