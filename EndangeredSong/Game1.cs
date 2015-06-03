@@ -78,7 +78,7 @@ namespace EndangeredSong
             player = new Player(300, 250, 200, 120, dimX, dimY);
             b1 = new BIOAgent(600, 300, 200, 350, dimX, dimY);
             menu = new Menu(0, 0, 980, 540);
-            map = new MiniMap(400, 300, graphics.GraphicsDevice);
+            map = new MiniMap(200, 150, graphics.GraphicsDevice);
             started = false;
             
             controls = new Controls();
@@ -92,8 +92,8 @@ namespace EndangeredSong
 
             for (int i = 0; i < 10; i++)    //randomly generate 10 obstacles and harmonians on the map
             {
-                Harmonian h = new Harmonian(rand.Next(0, dimX - 200), rand.Next(0, dimY - 200), 200, 120, dimX, dimY);
-                HidingPlace p = new HidingPlace(rand.Next(0, dimX - 200), rand.Next(0, dimY - 200), 400, 500, rand.Next(0, 4));
+                Harmonian h = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY);
+                HidingPlace p = new HidingPlace(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 400, 500, rand.Next(0, 4));
                 undiscoveredHarmonians.Add(h);
                 hidingPlaces.Add(p);
             }
@@ -199,7 +199,7 @@ namespace EndangeredSong
 
                 b1.Draw(spriteBatch);
                 player.Draw(spriteBatch);
-                map.Draw(spriteBatch, (int)(player.getPosition().X + 200), (int)(player.getPosition().Y - 200));
+                map.Draw(spriteBatch, (int)(player.getPosition().X + 300), (int)(player.getPosition().Y - 200));
                 
             };
                         

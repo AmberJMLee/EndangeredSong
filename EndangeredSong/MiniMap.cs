@@ -61,10 +61,10 @@ namespace EndangeredSong
             for(int i = 0; i < hidingPlaces.Count; i++)
             {
                 
-                x1 = (int)((HidingPlace)hidingPlaces[i]).getPosition().X / 10;
-                y1 = (int)((HidingPlace)hidingPlaces[i]).getPosition().Y / 10;
-                x2 = x1+(int)((HidingPlace)hidingPlaces[i]).getDimension().X / 10;
-                y2 = y1+(int)((HidingPlace)hidingPlaces[i]).getDimension().Y / 10;
+                x1 = (int)((HidingPlace)hidingPlaces[i]).getPosition().X / 20;
+                y1 = (int)((HidingPlace)hidingPlaces[i]).getPosition().Y / 20;
+                x2 = x1+(int)((HidingPlace)hidingPlaces[i]).getDimension().X / 20;
+                y2 = y1+(int)((HidingPlace)hidingPlaces[i]).getDimension().Y / 20;
                 //Debug.WriteLine(x1 + " " + y1 + "  " + x2 + " " + y2);
                 for (int x = x1; x < x2; x++)
                     for (int y = y1; y < y2; y++)
@@ -76,19 +76,19 @@ namespace EndangeredSong
             
             for (int i = 0; i < harmonians.Count; i++)
             {
-                x1 = (int)((Harmonian)harmonians[i]).getPosition().X / 10;
-                y1 = (int)((Harmonian)harmonians[i]).getPosition().Y / 10;
-                x2 = x1+(int)((Harmonian)harmonians[i]).getDimension().X / 10;
-                y2 = y1+(int)((Harmonian)harmonians[i]).getDimension().Y / 10;
+                x1 = (int)((Harmonian)harmonians[i]).getPosition().X / 20;
+                y1 = (int)((Harmonian)harmonians[i]).getPosition().Y / 20;
+                x2 = x1+(int)((Harmonian)harmonians[i]).getDimension().X / 20;
+                y2 = y1+(int)((Harmonian)harmonians[i]).getDimension().Y / 20;
                 for (int x = x1; x < x2; x++)
                     for (int y = y1; y < y2; y++)
                         this.setPixel(x, y, System.Drawing.Color.Orange);
             }
 
-            x1 = (int)player.getPosition().X / 10;
-            y1 = (int)player.getPosition().Y / 10;
-            x2 = x1+(int)player.getDimension().X / 10;
-            y2 = y1+(int)player.getDimension().Y / 10;
+            x1 = (int)player.getPosition().X / 20;
+            y1 = (int)player.getPosition().Y / 20;
+            x2 = x1+(int)player.getDimension().X / 20;
+            y2 = y1+(int)player.getDimension().Y / 20;
             for (int x = x1; x < x2; x++)
                 for (int y = y1; y < y2; y++)
                     this.setPixel(x, y, System.Drawing.Color.Red);
