@@ -13,7 +13,6 @@ namespace EndangeredSong
 {
     class Harmonian : Sprite
     {
-        //string musicFile;
         bool isHid;
         bool isFound;
         int maxX;
@@ -102,10 +101,16 @@ namespace EndangeredSong
                     this.pos = this.pos + direction * 6;
                 }
             }
-            
+        }
 
+        //These are method stubs that may be necessary.
+        public void BIOAgentsAreComing()
+        {
 
         }
-       
+       public void Die()
+        {
+
+        }
     }
 }
