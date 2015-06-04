@@ -35,7 +35,7 @@ namespace EndangeredSong
             this.dim.Y = height;
             this.maxX = maxX;
             this.maxY = maxY;
-            this.rect = new Rectangle(x, y, width, height);
+            this.rect = new Rectangle(x, y, width/2, height);
             this.isHid = false;
             this.isFound = false;
             this.foundPosition = -1;
@@ -75,7 +75,12 @@ namespace EndangeredSong
 
             Move(controls, player);
             if (this.isFound)
+<<<<<<< HEAD
                 if (timer < 0)
+=======
+            {
+                if (this.hasPlayed == false)
+>>>>>>> origin/master
                 {
                     s = song.CreateInstance();
                     //s.IsLooped = true;
@@ -83,6 +88,7 @@ namespace EndangeredSong
                     timer = TIMER;
                 }
                 this.isHid = player.isHidden();
+            }
             
         }
 
