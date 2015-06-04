@@ -38,6 +38,7 @@ namespace EndangeredSong
         int dimY;
         int screenWidth;
         int screenHeight;
+        int harmonianCount;
 
         SoundEffect song1;
         SoundEffect song2;
@@ -83,7 +84,8 @@ namespace EndangeredSong
             water = new Water(250, 200, 450, 200);
             map = new MiniMap(200, 150, graphics.GraphicsDevice);
             started = false;
-            
+            harmonianCount = 1;
+
             controls = new Controls();
             rand = new Random();
 
@@ -95,17 +97,23 @@ namespace EndangeredSong
 
             for (int i = 0; i < 10; i++)    //randomly generate 10 obstacles and harmonians on the map
             {
-                Harmonian h = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY);
+                
                 HidingPlace p = new HidingPlace(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 400, 500, rand.Next(0, 4));
-                undiscoveredHarmonians.Add(h);
+                
                 hidingPlaces.Add(p);
             }
 
+            Harmonian h1 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "2Music");
+            undiscoveredHarmonians.Add(h1);
+            Harmonian h2 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian1");
+            undiscoveredHarmonians.Add(h2);
 
-            song1 = Content.Load<SoundEffect>(@"Harmonian1");
+            song1 = Content.Load<SoundEffect>(@"1Music");
+
+
             var songInstance = song1.CreateInstance();
             songInstance.IsLooped = true;
-            songInstance.Play();
+            //songInstance.Play();
                 
 
             base.Initialize();

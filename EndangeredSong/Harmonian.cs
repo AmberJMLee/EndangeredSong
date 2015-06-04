@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using System.Diagnostics;
+using Microsoft.Xna.Framework.Audio;
 //using System.Drawing;
 
 namespace EndangeredSong
@@ -19,7 +20,11 @@ namespace EndangeredSong
         int maxY;
         Rectangle rect;
         int foundPosition;
-        public Harmonian(int x, int y, int width, int height, int maxX, int maxY)
+        string songName;
+        bool hasPlayed;
+        SoundEffect song;
+        SoundEffectInstance s;
+        public Harmonian(int x, int y, int width, int height, int maxX, int maxY, string sn)
 	    {            
             this.pos.X = x;
             this.pos.Y = y;
@@ -31,6 +36,8 @@ namespace EndangeredSong
             this.isHid = false;
             this.isFound = false;
             this.foundPosition = -1;
+            this.songName = sn;
+            this.hasPlayed = false;
 	    }
 
         public Vector2 getPosition()
@@ -44,6 +51,10 @@ namespace EndangeredSong
         public void LoadContent(ContentManager content)
         {
             image = content.Load<Texture2D>("Harmonian.png");
+            song = content.Load<SoundEffect>(@songName);
+           // var songInstance = song.CreateInstance();
+            //songInstance.IsLooped = true;
+            //songInstance.Play();
         }
         public Rectangle getRect()
         {
@@ -60,6 +71,13 @@ namespace EndangeredSong
         {
             Move(controls, player);
             if (this.isFound)
+                if (this.hasPlayed == false)
+                {
+                    s = song.CreateInstance();
+                    s.IsLooped = true;
+                    s.Play();
+                    this.hasPlayed = true;
+                }
                 this.isHid = player.isHidden();
             
         }
@@ -78,7 +96,6 @@ namespace EndangeredSong
                 
             if (this.isFound)
             {
-                
                 //direction += player.getFollowingPosition(this.foundPosition % 8);
                 if (direction.Length() > 100)
                 {
