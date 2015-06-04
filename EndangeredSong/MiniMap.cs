@@ -53,7 +53,7 @@ namespace EndangeredSong
                 
         }
 
-        public void Update(GraphicsDevice g, ArrayList hidingPlaces, ArrayList harmonians, Player player)
+        public void Update(GraphicsDevice g, ArrayList hidingPlaces, ArrayList harmonians, ArrayList water, Player player)
         {
             int x1, x2, y1, y2;
 
@@ -83,6 +83,16 @@ namespace EndangeredSong
                 for (int x = x1; x < x2; x++)
                     for (int y = y1; y < y2; y++)
                         this.setPixel(x, y, System.Drawing.Color.Orange);
+            }
+            for (int i = 0; i < water.Count; i++)
+            {
+                x1 = (int)((Water)water[i]).getPosition().X / 20;
+                y1 = (int)((Water)water[i]).getPosition().Y / 20;
+                x2 = x1 + (int)((Water)water[i]).getDimension().X / 20;
+                y2 = y1 + (int)((Water)water[i]).getDimension().Y / 20;
+                for (int x = x1; x < x2; x++)
+                    for (int y = y1; y < y2; y++)
+                        this.setPixel(x, y, System.Drawing.Color.Blue);
             }
 
             x1 = (int)player.getPosition().X / 20;
