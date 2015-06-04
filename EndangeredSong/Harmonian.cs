@@ -52,9 +52,7 @@ namespace EndangeredSong
         {
             image = content.Load<Texture2D>("Harmonian.png");
             song = content.Load<SoundEffect>(@songName);
-           // var songInstance = song.CreateInstance();
-            //songInstance.IsLooped = true;
-            //songInstance.Play();
+
         }
         public Rectangle getRect()
         {

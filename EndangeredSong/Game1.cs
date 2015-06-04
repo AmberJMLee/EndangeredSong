@@ -103,17 +103,34 @@ namespace EndangeredSong
                 hidingPlaces.Add(p);
             }
 
-            Harmonian h1 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "2Music");
+            Harmonian h1 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian1");
             undiscoveredHarmonians.Add(h1);
-            Harmonian h2 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian1");
+            Harmonian h2 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian3");
             undiscoveredHarmonians.Add(h2);
+            Harmonian h3 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian4");
+            undiscoveredHarmonians.Add(h3);
+            Harmonian h4 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian5");
+            undiscoveredHarmonians.Add(h4);
+            Harmonian h5 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian6");
+            undiscoveredHarmonians.Add(h2);
+            Harmonian h6 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian7");
+            undiscoveredHarmonians.Add(h2);
+            Harmonian h7 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian8");
+            undiscoveredHarmonians.Add(h7);
+            Harmonian h8 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian9");
+            undiscoveredHarmonians.Add(h8);
+            Harmonian h9 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian10");
+            undiscoveredHarmonians.Add(h9);
+            Harmonian h10 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian11");
+            undiscoveredHarmonians.Add(h10);
+
 
             song1 = Content.Load<SoundEffect>(@"1Music");
 
 
             var songInstance = song1.CreateInstance();
             songInstance.IsLooped = true;
-            //songInstance.Play();
+            songInstance.Play();
                 
 
             base.Initialize();
@@ -216,7 +233,7 @@ namespace EndangeredSong
                 player.Draw(spriteBatch);
 
                 //map.Draw(spriteBatch, (int)(player.getPosition().X + 300), (int)(player.getPosition().Y - 200));
-                map.Draw(spriteBatch, (int)camera.center.X + 800, (int)camera.center.Y);
+                map.Draw(spriteBatch, (int)camera.center.X + 750, (int)camera.center.Y);
                 
             };
                         
