@@ -24,8 +24,8 @@ namespace EndangeredSong
         SoundEffect song;
         SoundEffectInstance s;
 
-        float timer = 23;         
-        const float TIMER = 23;
+        float timer = 24;         
+        const float TIMER = 24;
 
         public Harmonian(int x, int y, int width, int height, int maxX, int maxY, string sn)
 	    {            
@@ -55,7 +55,9 @@ namespace EndangeredSong
         {
             image = content.Load<Texture2D>("Harmonian.png");
             song = content.Load<SoundEffect>(@songName);
-
+            s = song.CreateInstance();
+            s.Volume = 0;
+            s.Play();
         }
         public Rectangle getRect()
         {
@@ -74,23 +76,17 @@ namespace EndangeredSong
             timer -= elapsed;
 
             Move(controls, player);
-            if (this.isFound)
-<<<<<<< HEAD
-                if (timer < 0)
-=======
-            {
-                if (this.hasPlayed == false)
->>>>>>> origin/master
-                {
-                    s = song.CreateInstance();
-                    //s.IsLooped = true;
-                    s.Play();
-                    timer = TIMER;
-                }
-                this.isHid = player.isHidden();
+            if (timer < 0)
+            { 
+                s.Play();
+                timer = TIMER;
             }
-            
-        }
+            if (this.isFound)
+            {
+                s.Volume = 1;
+                this.isHid = player.isHidden();
+            } 
+            }
 
         public void Move(Controls controls, Player player)
         {
