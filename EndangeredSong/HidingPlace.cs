@@ -35,7 +35,7 @@ namespace EndangeredSong
             this.pos.Y = y;
             this.dim.X = width;
             this.dim.Y = height;
-            this.rect = new Rectangle(x, y, x + width, y + height);
+            this.rect = new Rectangle(x + 100, y + 75, width - 200, height - 200);
             this.maxCapacity = capacity;
             this.currentCapacity = 0;
         }
@@ -64,7 +64,7 @@ namespace EndangeredSong
         }
         public void Update(Controls controls, GameTime gameTime, Player player)
         {
-            Rectangle r = new Rectangle((int)player.getPosition().X, (int)player.getPosition().Y, (int)player.getDimension().X, (int)player.getDimension().Y);
+            Rectangle r = new Rectangle((int)player.getPosition().X, (int)player.getPosition().Y, (int)player.getDimension().X/2, (int)player.getDimension().Y);
 
             if (controls.onPress(Keys.Space, Buttons.A) && rect.Intersects(r))
             {
