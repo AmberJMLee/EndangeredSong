@@ -23,6 +23,10 @@ namespace EndangeredSong
         bool hasPlayed;
         SoundEffect song;
         SoundEffectInstance s;
+
+        float timer = 23;         
+        const float TIMER = 23;
+
         public Harmonian(int x, int y, int width, int height, int maxX, int maxY, string sn)
 	    {            
             this.pos.X = x;
@@ -66,14 +70,17 @@ namespace EndangeredSong
 
         public void Update(Controls controls, GameTime gameTime, Player player)
         {
+            float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            timer -= elapsed;
+
             Move(controls, player);
             if (this.isFound)
-                if (this.hasPlayed == false)
+                if (timer < 0)
                 {
                     s = song.CreateInstance();
-                    s.IsLooped = true;
+                    //s.IsLooped = true;
                     s.Play();
-                    this.hasPlayed = true;
+                    timer = TIMER;
                 }
                 this.isHid = player.isHidden();
             
