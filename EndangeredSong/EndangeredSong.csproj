@@ -82,7 +82,9 @@
     <Content Include="bin\WindowsGL\Debug\EndangeredSong.vshost.exe" />
     <Content Include="bin\WindowsGL\Debug\MonoGame.Framework.dll" />
     <Content Include="bin\WindowsGL\Debug\OpenTK.dll" />
-    <Content Include="Content\1.wav" />
+    <Content Include="Content\1Music.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\BIOAgentConceptArt.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
