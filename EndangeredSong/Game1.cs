@@ -39,6 +39,9 @@ namespace EndangeredSong
         int screenWidth;
         int screenHeight;
         int harmonianCount;
+        double elapsedTime;
+        int[,] coordPlaces;
+
 
         SoundEffect song1;
         SoundEffect song2;
@@ -78,13 +81,15 @@ namespace EndangeredSong
             hidingPlaces = new ArrayList();
             decorations = new ArrayList();
 
-            player = new Player(300, 250, 200, 120, dimX, dimY);
+            coordPlaces = new int[16, 2] { { 300, 2200 }, { 700, 1800 }, { 700, 1200 }, { 700, 1500 }, { 750, 100 }, {800, 2700}, { 1200, 2500 }, {1600, 1300 } , { 2000, 1800} , {2400, 200}, {2450, 200} , {2600, 100} , {3000 , 1300} , {3400, 1700 } , {3500 , 1800} , {3600 , 1750} }; 
+            player = new Player(300, 1500, 200, 120, dimX, dimY);
             b1 = new BIOAgent(600, 300, 200, 350, dimX, dimY);
             menu = new Menu(0, 0, 980, 540);
             water = new Water(250, 200, 450, 200);
             map = new MiniMap(200, 150, graphics.GraphicsDevice);
             started = false;
             harmonianCount = 1;
+
 
             controls = new Controls();
             rand = new Random();
@@ -95,10 +100,10 @@ namespace EndangeredSong
                 decorations.Add(dec);
             }
 
-            for (int i = 0; i < 10; i++)    //randomly generate 10 obstacles and harmonians on the map
+            for (int i = 0; i < 16; i++)    //randomly generate 10 obstacles and harmonians on the map
             {
                 
-                HidingPlace p = new HidingPlace(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 400, 500, rand.Next(0, 4));
+                HidingPlace p = new HidingPlace(coordPlaces[i, 0], coordPlaces[i,1], 400, 500, rand.Next(0, 4));
                 
                 hidingPlaces.Add(p);
             }
@@ -128,9 +133,9 @@ namespace EndangeredSong
             song1 = Content.Load<SoundEffect>(@"1Music");
 
 
-            var songInstance = song1.CreateInstance();
-            songInstance.IsLooped = true;
-            songInstance.Play();
+//            var songInstance = song1.CreateInstance();
+//            songInstance.IsLooped = true;
+//            songInstance.Play();
                 
 
             base.Initialize();
@@ -195,6 +200,22 @@ namespace EndangeredSong
                 b1.Update(controls, gameTime, player);
                 player.Update(controls, gameTime);
                 map.Update(graphics.GraphicsDevice, hidingPlaces, undiscoveredHarmonians, player);
+
+                elapsedTime += gameTime.ElapsedGameTime.TotalSeconds;
+                if (elapsedTime%10 >= 4 && !b1.isOnScreen() ) // add bool?
+                {
+                    b1.activate();
+//                    b1.setPosition(new Vector2(rand.Next(0, 1000), rand.Next(0, 1000)));
+                    b1.setPosition(new Vector2(player.getPosition().X, player.getPosition().Y));
+                    
+                }
+
+                if (elapsedTime % 10 >= 6) 
+                {
+                    b1.disactivate();
+                    elapsedTime = 0;
+
+                }
             }
 
             else
