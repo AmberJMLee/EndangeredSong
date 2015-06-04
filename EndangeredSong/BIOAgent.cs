@@ -15,6 +15,7 @@ namespace EndangeredSong
     {
 	    int maxX;
         int maxY;
+        bool isActive;
 
         int frameRate;
 
@@ -27,24 +28,47 @@ namespace EndangeredSong
             this.maxX = maxX;
             this.maxY = maxY;
             this.frameRate = 1;
+            this.isActive = false;
 	    }
         public Vector2 getPosition()
         {
             return this.pos;
         }
-
+        public void setPosition(Vector2 newPosition)
+        {
+            this.pos = newPosition;
+        }
 
         public void LoadContent(ContentManager content)
         {
             image = content.Load<Texture2D>("sprite.gif");
         }
-
+        public bool isOnScreen()
+        {
+            return this.isActive;
+        }
         public void Draw(SpriteBatch sb)
         {
-            sb.Draw(image, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
+            if (isActive)
+            {
+                sb.Draw(image, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
+            }
         }
 
+        public void activate()
+        {
+            this.isActive = true;
+        }
 
+        public void disactivate()
+        {
+            this.isActive = false;
+        }
+
+        public void notActive()
+        { 
+        
+        }
         public void Update(Controls controls, GameTime gameTime, Player player)
         {
             Move(controls, player);

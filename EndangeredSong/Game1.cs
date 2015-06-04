@@ -39,6 +39,8 @@ namespace EndangeredSong
         int screenWidth;
         int screenHeight;
         int harmonianCount;
+        double elapsedTime;
+
 
         SoundEffect song1;
         SoundEffect song2;
@@ -195,6 +197,20 @@ namespace EndangeredSong
                 b1.Update(controls, gameTime, player);
                 player.Update(controls, gameTime);
                 map.Update(graphics.GraphicsDevice, hidingPlaces, undiscoveredHarmonians, player);
+
+                elapsedTime += gameTime.ElapsedGameTime.TotalSeconds;
+                if (elapsedTime%10 >= 4 && !b1.isOnScreen() ) // add bool?
+                {
+                    b1.activate();
+                    b1.setPosition(new Vector2(rand.Next(0, 1000), rand.Next(0, 1000)));
+                }
+
+                if (elapsedTime % 10 >= 6) 
+                {
+                    b1.disactivate();
+                    elapsedTime = 0;
+
+                }
             }
 
             else
