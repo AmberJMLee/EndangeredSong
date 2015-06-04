@@ -31,6 +31,8 @@ namespace EndangeredSong
 
         Player player;
         BIOAgent b1;
+        Water water;
+
         Random rand;
         int dimX;
         int dimY;
@@ -78,6 +80,7 @@ namespace EndangeredSong
             player = new Player(300, 250, 200, 120, dimX, dimY);
             b1 = new BIOAgent(600, 300, 200, 350, dimX, dimY);
             menu = new Menu(0, 0, 980, 540);
+            water = new Water(250, 200, 450, 200);
             map = new MiniMap(200, 150, graphics.GraphicsDevice);
             started = false;
             
@@ -119,7 +122,8 @@ namespace EndangeredSong
 
             b1.LoadContent(this.Content);
             player.LoadContent(this.Content);
-            menu.LoadContent(this.Content);            
+            menu.LoadContent(this.Content);
+            water.LoadContent(this.Content);
 
             for (int j = 0; j < decorations.Count; j++)
                 ((Decor)decorations[j]).LoadContent(this.Content);
@@ -155,7 +159,7 @@ namespace EndangeredSong
             if (started)
             {
                 camera.Update(gameTime, player, screenWidth, screenHeight);
-                
+                water.Update(controls, gameTime, player);
                 for (int j = 0; j < decorations.Count; j++ )
                     ((Decor)decorations[j]).Update(controls, gameTime);
                 for (int i = 0; i < hidingPlaces.Count; i++)
@@ -191,8 +195,10 @@ namespace EndangeredSong
                 menu.Draw(spriteBatch);
             else
             {
+                
                 for (int j = 0; j < decorations.Count; j++ )
                     ((Decor)decorations[j]).Draw(spriteBatch);
+                water.Draw(spriteBatch);
                 for (int i = 0; i < hidingPlaces.Count; i++)  
                     ((HidingPlace)hidingPlaces[i]).Draw(spriteBatch);
                 for (int k = 0; k < undiscoveredHarmonians.Count; k ++ )
@@ -200,6 +206,7 @@ namespace EndangeredSong
 
                 b1.Draw(spriteBatch);
                 player.Draw(spriteBatch);
+
                 //map.Draw(spriteBatch, (int)(player.getPosition().X + 300), (int)(player.getPosition().Y - 200));
                 map.Draw(spriteBatch, (int)camera.center.X + 800, (int)camera.center.Y);
                 
