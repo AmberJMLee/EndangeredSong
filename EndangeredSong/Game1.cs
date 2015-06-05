@@ -107,7 +107,7 @@ namespace EndangeredSong
                 hidingPlaces.Add(p);
             }
 
-            for (int k = 0; k < 10; k++)
+            for (int k = 0; k < 3; k++)
             {
                 Water w = new Water(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 450, 200);
                 water.Add(w);
@@ -207,18 +207,18 @@ namespace EndangeredSong
 
                 b1.Update(controls, gameTime, player);
                 player.Update(controls, gameTime);
-                map.Update(graphics.GraphicsDevice, hidingPlaces, undiscoveredHarmonians, water, player);
+                map.Update(graphics.GraphicsDevice, hidingPlaces, undiscoveredHarmonians, water, b1, player);
 
                 elapsedTime += gameTime.ElapsedGameTime.TotalSeconds;
-                if (elapsedTime%10 >= 4 && !b1.isOnScreen() ) // add bool?
+                if (elapsedTime%20 >= 5 && !b1.isOnScreen() ) // add bool?
                 {
                     b1.activate();
-//                    b1.setPosition(new Vector2(rand.Next(0, 1000), rand.Next(0, 1000)));
-                    b1.setPosition(new Vector2(player.getPosition().X, player.getPosition().Y));
+                    b1.setPosition(new Vector2(rand.Next(0, 4000), rand.Next(0, 3000)));
+                    //b1.setPosition(new Vector2(player.getPosition().X, player.getPosition().Y));
                     
                 }
 
-                if (elapsedTime % 10 >= 6) 
+                if (elapsedTime % 20 >= 10) 
                 {
                     b1.disactivate();
                     elapsedTime = 0;

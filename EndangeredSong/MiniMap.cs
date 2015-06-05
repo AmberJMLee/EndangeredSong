@@ -53,7 +53,7 @@ namespace EndangeredSong
                 
         }
 
-        public void Update(GraphicsDevice g, ArrayList hidingPlaces, ArrayList harmonians, ArrayList water, Player player)
+        public void Update(GraphicsDevice g, ArrayList hidingPlaces, ArrayList harmonians, ArrayList water, BIOAgent bio, Player player)
         {
             int x1, x2, y1, y2;
 
@@ -94,6 +94,17 @@ namespace EndangeredSong
                     for (int y = y1; y < y2; y++)
                         this.setPixel(x, y, System.Drawing.Color.Blue);
             }
+            if (bio.isOnScreen())
+            {
+                x1 = (int)bio.getPosition().X / 20;
+                y1 = (int)bio.getPosition().Y / 20;
+                x2 = x1 + (int)bio.getDimension().X / 20;
+                y2 = y1 + (int)bio.getDimension().Y / 20;
+                for (int x = x1; x < x2; x++)
+                    for (int y = y1; y < y2; y++)
+                        this.setPixel(x, y, System.Drawing.Color.Purple);
+            }
+
             x1 = (int)player.getPosition().X / 20;
             y1 = (int)player.getPosition().Y / 20;
             x2 = x1+(int)player.getDimension().X / 20;

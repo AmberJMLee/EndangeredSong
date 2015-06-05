@@ -38,7 +38,10 @@ namespace EndangeredSong
         {
             this.pos = newPosition;
         }
-
+        public Vector2 getDimension()
+        {
+            return this.dim;
+        }
         public void LoadContent(ContentManager content)
         {
             image = content.Load<Texture2D>("sprite.gif");
