@@ -14,7 +14,7 @@ namespace EndangeredSong
     {
         int maxCapacity;
         int currentCapacity;
-
+        Texture2D filledHidingPlace;
         Rectangle rect;
         //SpriteFont font;
 
@@ -26,7 +26,7 @@ namespace EndangeredSong
             this.dim.Y = height;
             this.rect = new Rectangle(x, y, width, height);
             this.maxCapacity = 0;
-            this.currentCapacity = 0;
+            this.currentCapacity = 3;
 	    }
 
         public HidingPlace(int x, int y, int width, int height, int capacity)
@@ -37,7 +37,7 @@ namespace EndangeredSong
             this.dim.Y = height;
             this.rect = new Rectangle(x, y, x + width, y + height);
             this.maxCapacity = capacity;
-            this.currentCapacity = 0;
+            this.currentCapacity = 3;
         }
         
         public Vector2 getPosition()
@@ -51,6 +51,7 @@ namespace EndangeredSong
         public void LoadContent(ContentManager content)
         {
             image = content.Load<Texture2D>("emptyrightbigtree.png");
+            filledHidingPlace = content.Load<Texture2D>("fullrightbigtree.png");
         }
 
         public Rectangle getRect()
@@ -60,7 +61,10 @@ namespace EndangeredSong
 
         public void Draw(SpriteBatch sb)
         {
-            sb.Draw(image, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
+            if (currentCapacity > 0)
+                sb.Draw(image, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
+            else
+                sb.Draw(filledHidingPlace, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
         }
         public void Update(Controls controls, GameTime gameTime, Player player)
         {
@@ -69,8 +73,10 @@ namespace EndangeredSong
             if (controls.onPress(Keys.Space, Buttons.A) && rect.Intersects(r))
             {
                 player.Hide();
+                //this is just a small flaw
+                currentCapacity = 0;
             }
-            
+
         }
        
     }
