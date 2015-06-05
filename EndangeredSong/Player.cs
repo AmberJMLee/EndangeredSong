@@ -18,6 +18,8 @@ namespace EndangeredSong
         int maxX;
         int maxY;
         int numFound;
+
+        bool isDead;
         
         public Player (int x, int y, int width, int height, int maxX, int maxY)
 	    {
@@ -34,6 +36,8 @@ namespace EndangeredSong
 
             followingPositions = new int[8, 2] {{-60, -60},{0, -80},{60, -60},{80, 0},{60, 60},{0, 80},{-60, 60},{-80, 0}};
             numFound = 0;
+
+            this.isDead = false;
 	    }
        
         public Vector2 getPosition()
@@ -65,6 +69,7 @@ namespace EndangeredSong
         {
             return this.isHid;
         }
+
         public void foundHarmonian()
         {
             this.numFound++;
@@ -82,6 +87,11 @@ namespace EndangeredSong
         public void Update(Controls controls, GameTime gameTime)
         {
             Move(controls);
+        }
+
+        public void Die()
+        {
+            this.isDead = true;
         }
 
         public void Move(Controls controls)

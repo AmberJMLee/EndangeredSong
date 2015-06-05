@@ -23,6 +23,7 @@ namespace EndangeredSong
         bool hasPlayed;
         SoundEffect song;
         SoundEffectInstance s;
+        bool isDead;
 
         float timer = 24;         
         const float TIMER = 24;
@@ -41,6 +42,7 @@ namespace EndangeredSong
             this.foundPosition = -1;
             this.songName = sn;
             this.hasPlayed = false;
+            this.isDead = false;
 	    }
 
         public Vector2 getPosition()
@@ -54,10 +56,25 @@ namespace EndangeredSong
         public void LoadContent(ContentManager content)
         {
             image = content.Load<Texture2D>("Harmonian.png");
-            song = content.Load<SoundEffect>(@songName);
-            s = song.CreateInstance();
-            s.Volume = 0;
-            s.Play();
+//            song = content.Load<SoundEffect>(@songName);
+//            s = song.CreateInstance();
+//            s.Volume = 0;
+//            s.Play();
+        }
+
+        public bool getFound()
+        {
+            return this.isFound;
+        }
+
+        public bool getHid()
+        {
+            return this.isHid;
+        }
+
+        public bool getDead()
+        {
+            return this.isDead;
         }
         public Rectangle getRect()
         {
@@ -66,7 +83,8 @@ namespace EndangeredSong
         
         public void Draw(SpriteBatch sb)
         {
-            if(!this.isHid)
+
+          if(!this.isHid && !this.isDead)
                 sb.Draw(image, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
         }
 
@@ -78,12 +96,12 @@ namespace EndangeredSong
             Move(controls, player);
             if (timer < 0)
             { 
-                s.Play();
+//                s.Play();
                 timer = TIMER;
             }
             if (this.isFound)
             {
-                s.Volume = 1;
+//                s.Volume = 1;
                 this.isHid = player.isHidden();
             } 
             }
@@ -118,7 +136,10 @@ namespace EndangeredSong
         }
        public void Die()
         {
-
+            this.isDead = true;
+            Console.WriteLine("HARMONIAN DIED");
         }
+
+        
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Audio;
 using System;
 using System.Collections;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace EndangeredSong
 {
@@ -25,10 +26,12 @@ namespace EndangeredSong
         Camera camera;
         MiniMap map;
 
+
         ArrayList undiscoveredHarmonians;
         ArrayList hidingPlaces;
         ArrayList decorations;
         ArrayList water;
+//        ArrayList discoveredHarmonians;
 
         Player player;
         BIOAgent b1;
@@ -77,6 +80,7 @@ namespace EndangeredSong
             dimX = GraphicsDevice.Viewport.Bounds.Width;
             dimY = GraphicsDevice.Viewport.Bounds.Height;
 
+//            discoveredHarmonians = new ArrayList();
             undiscoveredHarmonians = new ArrayList();
             hidingPlaces = new ArrayList();
             decorations = new ArrayList();
@@ -206,7 +210,7 @@ namespace EndangeredSong
                 for (int k = 0; k < undiscoveredHarmonians.Count; k++ )
                     ((Harmonian)undiscoveredHarmonians[k]).Update(controls, gameTime, player);
 
-                b1.Update(controls, gameTime, player);
+                b1.Update(controls, gameTime, player, undiscoveredHarmonians);
                 player.Update(controls, gameTime);
                 map.Update(graphics.GraphicsDevice, hidingPlaces, undiscoveredHarmonians, water, b1, player);
 
@@ -215,6 +219,13 @@ namespace EndangeredSong
                 {
                     b1.activate();
                     b1.setPosition(new Vector2(rand.Next(0, 4000), rand.Next(0, 3000)));
+//                    for (int a = 0; a < undiscoveredHarmonians.Count; a++)
+//                    { 
+//                        if ((Harmonian)undiscoveredHarmonians[a].isFound)
+//                        {
+//                            
+//                            }
+//                    }
                     //b1.setPosition(new Vector2(player.getPosition().X, player.getPosition().Y));
                     
                 }

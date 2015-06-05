@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,6 +17,7 @@ namespace EndangeredSong
 	    int maxX;
         int maxY;
         bool isActive;
+        Rectangle rect;
 
         int frameRate;
 
@@ -29,7 +31,14 @@ namespace EndangeredSong
             this.maxY = maxY;
             this.frameRate = 1;
             this.isActive = false;
+            this.rect = new Rectangle(x*10, y*10, width*10, height*10);
 	    }
+
+        public Rectangle getRect()
+        {
+            return this.rect; 
+        }
+
         public Vector2 getPosition()
         {
             return this.pos;
@@ -58,6 +67,7 @@ namespace EndangeredSong
             }
         }
 
+        
         public void activate()
         {
             this.isActive = true;
@@ -72,10 +82,30 @@ namespace EndangeredSong
         { 
         
         }
-        public void Update(Controls controls, GameTime gameTime, Player player)
+        public void Update(Controls controls, GameTime gameTime, Player player, ArrayList harmonians)
         {
-            Move(controls, player);
+            for (int i = 0; i < harmonians.Count; i++)
+            {
+                Rectangle r = new Rectangle((int)player.getPosition().X, (int)player.getPosition().Y, (int)player.getDimension().X, (int)player.getDimension().Y);
+                if (rect.Intersects(r))
+//                if (rect.Intersects(((Harmonian)harmonians[i]).getRect()) && ((Harmonian)harmonians[i]).getFound() && !((Harmonian)harmonians[i]).getHid())
+                {
+                    ((Harmonian)harmonians[i]).Die();
+                    player.Die();
+                    Console.WriteLine("HARMONIAN DEATH");
+                }
+            }
+
+                Move(controls, player);
         }
+//        public void Update(Controls controls, GameTime gameTime, Player player)
+//        {
+//            Rectangle r = new Rectangle((int)player.getPosition().X, (int)player.getPosition().Y, (int)player.getDimension().X, (int)player.getDimension().Y);
+//
+//            if (controls.onPress(Keys.Space, Buttons.A) && rect.Intersects(r))
+//            {
+//                player.Hide();
+//            }
 
         public void Move(Controls controls, Player player)
         {
