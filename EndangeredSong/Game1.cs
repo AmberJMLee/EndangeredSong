@@ -69,8 +69,8 @@ namespace EndangeredSong
             camera = new Camera(GraphicsDevice.Viewport);
             GraphicsDevice.Viewport = new Viewport(0, 0, 4000, 3000);
             //GraphicsDevice.Viewport = new Viewport(0, 0, 1000, 800);
-            screenWidth = 980;
-            screenHeight = 540;
+            screenWidth = 1300;
+            screenHeight = 700;
             graphics.PreferredBackBufferWidth = screenWidth;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = screenHeight;   // set this value to the desired height of your window          
             graphics.ApplyChanges();
@@ -84,7 +84,7 @@ namespace EndangeredSong
             coordPlaces = new int[16, 2] { { 300, 2200 }, { 700, 1800 }, { 700, 1200 }, { 700, 1500 }, { 750, 100 }, {800, 2700}, { 1200, 2500 }, {1600, 1300 } , { 2000, 1800} , {2400, 200}, {2450, 200} , {2600, 100} , {3000 , 1300} , {3400, 1700 } , {3500 , 1800} , {3600 , 1750} }; 
             player = new Player(300, 1500, 200, 120, dimX, dimY);
             b1 = new BIOAgent(600, 300, 200, 350, dimX, dimY);
-            menu = new Menu(0, 0, 980, 540);
+            menu = new Menu(0, 0, screenWidth, screenHeight);
             map = new MiniMap(200, 150, graphics.GraphicsDevice);
             started = false;
             harmonianCount = 1;
@@ -113,6 +113,7 @@ namespace EndangeredSong
                 water.Add(w);
             }
 
+
             Harmonian h1 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian1");
             undiscoveredHarmonians.Add(h1);
             Harmonian h2 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian3");
@@ -138,9 +139,9 @@ namespace EndangeredSong
             song1 = Content.Load<SoundEffect>(@"1Music");
 
 
-//            var songInstance = song1.CreateInstance();
-//            songInstance.IsLooped = true;
-//            songInstance.Play();
+            var songInstance = song1.CreateInstance();
+            songInstance.IsLooped = true;
+            songInstance.Play();
                 
 
             base.Initialize();
@@ -264,7 +265,7 @@ namespace EndangeredSong
                 player.Draw(spriteBatch);
 
                 //map.Draw(spriteBatch, (int)(player.getPosition().X + 300), (int)(player.getPosition().Y - 200));
-                map.Draw(spriteBatch, (int)camera.center.X + 780, (int)camera.center.Y);
+                map.Draw(spriteBatch, (int)camera.center.X + screenWidth - 200, (int)camera.center.Y);
                 
             };
                         
