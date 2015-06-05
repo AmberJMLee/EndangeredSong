@@ -91,7 +91,6 @@ namespace EndangeredSong
         public void Move(Controls controls, Player player)
         {
             Vector2 direction = player.getPosition() - this.pos;
-            
 
             if (direction.Length() < 100 && !this.isFound)
             {
