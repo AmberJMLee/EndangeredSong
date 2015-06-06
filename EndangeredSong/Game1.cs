@@ -25,11 +25,10 @@ namespace EndangeredSong
         MiniMap map;
 
 
-        ArrayList undiscoveredHarmonians;
+        ArrayList harmonians;
         ArrayList hidingPlaces;
         ArrayList decorations;
         ArrayList water;
-//        ArrayList discoveredHarmonians;
 
         Player player;
         BIOAgent b1;
@@ -71,8 +70,7 @@ namespace EndangeredSong
             dimX = GraphicsDevice.Viewport.Bounds.Width;
             dimY = GraphicsDevice.Viewport.Bounds.Height;
 
-//            discoveredHarmonians = new ArrayList();
-            undiscoveredHarmonians = new ArrayList();
+            harmonians = new ArrayList();
             hidingPlaces = new ArrayList();
             decorations = new ArrayList();
             water = new ArrayList();
@@ -95,7 +93,7 @@ namespace EndangeredSong
 
             for (int i = 0; i < 16; i++)    
             {                
-                HidingPlace p = new HidingPlace(coordPlaces[i, 0], coordPlaces[i,1], 400, 500, rand.Next(0, 4));                
+                HidingPlace p = new HidingPlace(coordPlaces[i, 0], coordPlaces[i,1], 400, 500, rand.Next(1, 4));                
                 hidingPlaces.Add(p);
             }
 
@@ -106,25 +104,25 @@ namespace EndangeredSong
             }
 
             Harmonian h1 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian1");
-            undiscoveredHarmonians.Add(h1);
+            harmonians.Add(h1);
             Harmonian h2 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian3");
-            undiscoveredHarmonians.Add(h2);
+            harmonians.Add(h2);
             Harmonian h3 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian4");
-            undiscoveredHarmonians.Add(h3);
+            harmonians.Add(h3);
             Harmonian h4 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian5");
-            undiscoveredHarmonians.Add(h4);
+            harmonians.Add(h4);
             Harmonian h5 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian6");
-            undiscoveredHarmonians.Add(h2);
+            harmonians.Add(h2);
             Harmonian h6 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian7");
-            undiscoveredHarmonians.Add(h2);
+            harmonians.Add(h2);
             Harmonian h7 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian8");
-            undiscoveredHarmonians.Add(h7);
+            harmonians.Add(h7);
             Harmonian h8 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian9");
-            undiscoveredHarmonians.Add(h8);
+            harmonians.Add(h8);
             Harmonian h9 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian10");
-            undiscoveredHarmonians.Add(h9);
+            harmonians.Add(h9);
             Harmonian h10 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian11");
-            undiscoveredHarmonians.Add(h10);
+            harmonians.Add(h10);
 
             song1 = Content.Load<SoundEffect>(@"1Music");
 
@@ -153,9 +151,9 @@ namespace EndangeredSong
             for (int l = 0; l < water.Count; l++)
                 ((Water)water[l]).LoadContent(this.Content);
             for (int i = 0; i < hidingPlaces.Count; i++)                           
-                ((HidingPlace)hidingPlaces[i]).LoadContent(this.Content);            
-            for (int k = 0; k < undiscoveredHarmonians.Count; k++)
-                ((Harmonian)undiscoveredHarmonians[k]).LoadContent(this.Content);
+                ((HidingPlace)hidingPlaces[i]).LoadContent(this.Content);
+            for (int k = 0; k < harmonians.Count; k++)
+                ((Harmonian)harmonians[k]).LoadContent(this.Content);
             
         }
 
@@ -183,13 +181,13 @@ namespace EndangeredSong
                 for (int l = 0; l < water.Count; l++)
                     ((Water)water[l]).Update(controls, gameTime, player);
                 for (int i = 0; i < hidingPlaces.Count; i++)
-                    ((HidingPlace)hidingPlaces[i]).Update(controls, gameTime, player);
-                for (int k = 0; k < undiscoveredHarmonians.Count; k++ )
-                    ((Harmonian)undiscoveredHarmonians[k]).Update(controls, gameTime, player);
+                    ((HidingPlace)hidingPlaces[i]).Update(controls, gameTime, player, harmonians);
+                for (int k = 0; k < harmonians.Count; k++)
+                    ((Harmonian)harmonians[k]).Update(controls, gameTime, player);
 
-                b1.Update(controls, gameTime, player, undiscoveredHarmonians);
+                b1.Update(controls, gameTime, player, harmonians);
                 player.Update(controls, gameTime);
-                map.Update(graphics.GraphicsDevice, hidingPlaces, undiscoveredHarmonians, water, b1, player);
+                map.Update(graphics.GraphicsDevice, hidingPlaces, harmonians, water, b1, player);
 
                 elapsedTime += gameTime.ElapsedGameTime.TotalSeconds;
                 if (elapsedTime%20 >= 5 && !b1.isOnScreen() ) // add bool?
@@ -235,8 +233,8 @@ namespace EndangeredSong
                     ((Water)water[l]).Draw(spriteBatch);               
                 for (int i = 0; i < hidingPlaces.Count; i++)  
                     ((HidingPlace)hidingPlaces[i]).Draw(spriteBatch);
-                for (int k = 0; k < undiscoveredHarmonians.Count; k ++ )
-                    ((Harmonian)undiscoveredHarmonians[k]).Draw(spriteBatch);
+                for (int k = 0; k < harmonians.Count; k++)
+                    ((Harmonian)harmonians[k]).Draw(spriteBatch);
 
                 b1.Draw(spriteBatch);
                 player.Draw(spriteBatch);

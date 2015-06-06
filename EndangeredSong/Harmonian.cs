@@ -17,7 +17,6 @@ namespace EndangeredSong
         bool isFound;
         int maxX;
         int maxY;
-        Rectangle rect;
         int foundPosition;
         string songName;
         bool hasPlayed;
@@ -36,7 +35,6 @@ namespace EndangeredSong
             this.dim.Y = height;
             this.maxX = maxX;
             this.maxY = maxY;
-            this.rect = new Rectangle(x, y, width/2, height);
             this.isHid = false;
             this.isFound = false;
             this.foundPosition = -1;
@@ -78,14 +76,21 @@ namespace EndangeredSong
         }
         public Rectangle getRect()
         {
-            return this.rect;
+            return new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y);
         }
-        
+        public void setFound(bool b)
+        {
+            this.isFound = b;
+        }
+        public void setHid(bool b)
+        {
+            this.isHid = b;
+        }
         public void Draw(SpriteBatch sb)
         {
 
           if(!this.isHid && !this.isDead)
-                sb.Draw(image, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
+                sb.Draw(image, this.getRect(), Color.White);
         }
 
         public void Update(Controls controls, GameTime gameTime, Player player)
@@ -102,7 +107,7 @@ namespace EndangeredSong
             if (this.isFound)
             {
 //                s.Volume = 1;
-                this.isHid = player.isHidden();
+                //this.isHid = player.isHidden();
             } 
             }
 
@@ -119,7 +124,6 @@ namespace EndangeredSong
                 
             if (this.isFound)
             {
-                //direction += player.getFollowingPosition(this.foundPosition % 8);
                 if (direction.Length() > 100)
                 {
                     direction += player.getFollowingPosition(this.foundPosition % 8);

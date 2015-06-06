@@ -45,10 +45,7 @@ namespace EndangeredSong
             return this.pos;
             //return this.pos + (this.dim / 2);
         }
-        //public Vector2 getCenterPosition()
-        //{
-        //    return this.pos + this.dim/2;
-        //}
+
         public Vector2 getDimension()
         {
             return this.dim;
@@ -60,6 +57,10 @@ namespace EndangeredSong
         public Vector2 getFollowingPosition(int x)
         {
             return new Vector2(followingPositions[x, 0], followingPositions[x, 1]);
+        }
+        public Rectangle getRect()
+        {
+            return new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y);
         }
         public void LoadContent(ContentManager content)
         {
@@ -87,6 +88,43 @@ namespace EndangeredSong
         public void Update(Controls controls, GameTime gameTime)
         {
             Move(controls);
+        }
+
+        public void HideHarmonians(HidingPlace h, ArrayList harmonians)
+        {
+            
+            if (h.isFull())   //tree is filled, take back all harmonians
+            {                
+                for (int i = 0; i < harmonians.Count; i++)
+                {
+                    if (h.isEmpty())
+                        break;
+                    if (((Harmonian)harmonians[i]).getFound() && ((Harmonian)harmonians[i]).getHid() 
+                                                              && h.getRect().Intersects(((Harmonian)harmonians[i]).getRect()))
+                    {
+                        ((Harmonian)harmonians[i]).setHid(false);
+                        h.empty();
+                        this.numFound++;
+                    }
+
+                }
+            }
+            else        //tree is empty, fill with harmonians
+            {
+                for (int i = 0; i < harmonians.Count; i++)
+                {
+                    if (h.isFull())
+                        break;
+                    if (((Harmonian)harmonians[i]).getFound() && !((Harmonian)harmonians[i]).getHid()
+                                                              && h.getRect().Intersects(((Harmonian)harmonians[i]).getRect()))
+                    {
+                        ((Harmonian)harmonians[i]).setHid(true);
+                        h.fill();
+                        this.numFound--;
+                    }
+
+                }
+            }
         }
 
         public void Die()
