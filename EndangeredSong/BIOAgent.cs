@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
+using System.Diagnostics;
 /// <summary>
 /// Summary description for Class1
 /// </summary>
@@ -33,12 +34,10 @@ namespace EndangeredSong
             this.isActive = false;
             this.rect = new Rectangle(x*10, y*10, width*10, height*10);
 	    }
-
         public Rectangle getRect()
         {
             return this.rect; 
         }
-
         public Vector2 getPosition()
         {
             return this.pos;
@@ -65,47 +64,45 @@ namespace EndangeredSong
             {
                 sb.Draw(image, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
             }
-        }
-
-        
+        }     
         public void activate()
         {
             this.isActive = true;
         }
-
         public void disactivate()
         {
             this.isActive = false;
         }
-
         public void notActive()
         { 
         
         }
         public void Update(Controls controls, GameTime gameTime, Player player, ArrayList harmonians)
         {
-            for (int i = 0; i < harmonians.Count; i++)
+            Rectangle r;
+
+            for (int i = 0; i < harmonians.Count; i++)  //loops through harmonian and checks for death of found, unhidden harmonians
             {
-                Rectangle r = new Rectangle((int)player.getPosition().X, (int)player.getPosition().Y, (int)player.getDimension().X, (int)player.getDimension().Y);
-                if (rect.Intersects(r))
-//                if (rect.Intersects(((Harmonian)harmonians[i]).getRect()) && ((Harmonian)harmonians[i]).getFound() && !((Harmonian)harmonians[i]).getHid())
+                Harmonian h = (Harmonian)harmonians[i];
+                r = new Rectangle((int)h.getPosition().X, (int)h.getPosition().Y, (int)h.getDimension().X, (int)h.getDimension().Y);
+                
+                if (rect.Intersects(r) && h.getFound() && !h.getHid())
                 {
-                    ((Harmonian)harmonians[i]).Die();
-                    player.Die();
-                    Console.WriteLine("HARMONIAN DEATH");
+                    h.Die();
+                    Debug.WriteLine("HARMONIAN DEATH");
                 }
             }
 
-                Move(controls, player);
+            //checks for player death
+            r = new Rectangle((int)player.getPosition().X, (int)player.getPosition().Y, (int)player.getDimension().X, (int)player.getDimension().Y);
+            if (rect.Intersects(r))
+            {                  
+                player.Die();
+                Debug.WriteLine("PLAYER DEATH");
+            }            
+            Move(controls, player);
         }
-//        public void Update(Controls controls, GameTime gameTime, Player player)
-//        {
-//            Rectangle r = new Rectangle((int)player.getPosition().X, (int)player.getPosition().Y, (int)player.getDimension().X, (int)player.getDimension().Y);
-//
-//            if (controls.onPress(Keys.Space, Buttons.A) && rect.Intersects(r))
-//            {
-//                player.Hide();
-//            }
+
 
         public void Move(Controls controls, Player player)
         {

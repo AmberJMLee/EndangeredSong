@@ -11,9 +11,7 @@ using System.Collections.Generic;
 
 namespace EndangeredSong
 {
-    /// <summary>
-    /// This is the main type for your game.
-    /// </summary>
+
     public class Game1 : Game
     {
   //      Song song;
@@ -48,10 +46,7 @@ namespace EndangeredSong
 
         SoundEffect song1;
         SoundEffect song2;
-        //Texture2D background;
-
-
-
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -59,19 +54,15 @@ namespace EndangeredSong
             this.Window.Title = "Endangered Song";
         }
 
-        /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
         /// related content.  Calling base.Initialize will enumerate through any components
         /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             IsMouseVisible = false;
             camera = new Camera(GraphicsDevice.Viewport);
             GraphicsDevice.Viewport = new Viewport(0, 0, 4000, 3000);
-            //GraphicsDevice.Viewport = new Viewport(0, 0, 1000, 800);
             screenWidth = 1300;
             screenHeight = 700;
             graphics.PreferredBackBufferWidth = screenWidth;  // set this value to the desired width of your window
@@ -93,7 +84,6 @@ namespace EndangeredSong
             started = false;
             harmonianCount = 1;
 
-
             controls = new Controls();
             rand = new Random();
 
@@ -103,11 +93,9 @@ namespace EndangeredSong
                 decorations.Add(dec);
             }
 
-            for (int i = 0; i < 16; i++)    //randomly generate 10 obstacles and harmonians on the map
-            {
-                
-                HidingPlace p = new HidingPlace(coordPlaces[i, 0], coordPlaces[i,1], 400, 500, rand.Next(0, 4));
-                
+            for (int i = 0; i < 16; i++)    
+            {                
+                HidingPlace p = new HidingPlace(coordPlaces[i, 0], coordPlaces[i,1], 400, 500, rand.Next(0, 4));                
                 hidingPlaces.Add(p);
             }
 
@@ -116,7 +104,6 @@ namespace EndangeredSong
                 Water w = new Water(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 450, 200);
                 water.Add(w);
             }
-
 
             Harmonian h1 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian1");
             undiscoveredHarmonians.Add(h1);
@@ -139,15 +126,12 @@ namespace EndangeredSong
             Harmonian h10 = new Harmonian(rand.Next(0, dimX - 100), rand.Next(0, dimY - 100), 200, 120, dimX, dimY, "Harmonian11");
             undiscoveredHarmonians.Add(h10);
 
-
             song1 = Content.Load<SoundEffect>(@"1Music");
-
 
             var songInstance = song1.CreateInstance();
             songInstance.IsLooped = true;
             songInstance.Play();
                 
-
             base.Initialize();
         }
 
@@ -175,19 +159,12 @@ namespace EndangeredSong
             
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
         protected override void UnloadContent()
         {
-
         }
 
-        /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
@@ -219,13 +196,6 @@ namespace EndangeredSong
                 {
                     b1.activate();
                     b1.setPosition(new Vector2(rand.Next(0, 4000), rand.Next(0, 3000)));
-//                    for (int a = 0; a < undiscoveredHarmonians.Count; a++)
-//                    { 
-//                        if ((Harmonian)undiscoveredHarmonians[a].isFound)
-//                        {
-//                            
-//                            }
-//                    }
                     //b1.setPosition(new Vector2(player.getPosition().X, player.getPosition().Y));
                     
                 }
@@ -247,15 +217,12 @@ namespace EndangeredSong
             base.Update(gameTime);
         }
 
-        /// <summary>
         /// This is called when the game should draw itself.
-        /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.DarkOliveGreen);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.transform);
-            
 
             if (!started)
                 menu.Draw(spriteBatch);
@@ -265,8 +232,7 @@ namespace EndangeredSong
                 for (int j = 0; j < decorations.Count; j++ )
                     ((Decor)decorations[j]).Draw(spriteBatch);
                 for (int l = 0; l < water.Count; l++)
-                    ((Water)water[l]).Draw(spriteBatch);
-                
+                    ((Water)water[l]).Draw(spriteBatch);               
                 for (int i = 0; i < hidingPlaces.Count; i++)  
                     ((HidingPlace)hidingPlaces[i]).Draw(spriteBatch);
                 for (int k = 0; k < undiscoveredHarmonians.Count; k ++ )
@@ -274,15 +240,11 @@ namespace EndangeredSong
 
                 b1.Draw(spriteBatch);
                 player.Draw(spriteBatch);
-
-                //map.Draw(spriteBatch, (int)(player.getPosition().X + 300), (int)(player.getPosition().Y - 200));
                 map.Draw(spriteBatch, (int)camera.center.X + screenWidth - 200, (int)camera.center.Y);
                 
             };
                         
-            spriteBatch.End();
-            
-            
+            spriteBatch.End();           
             base.Draw(gameTime);
         }
     }

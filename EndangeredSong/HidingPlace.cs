@@ -72,8 +72,7 @@ namespace EndangeredSong
 
             if (controls.onPress(Keys.Space, Buttons.A) && rect.Intersects(r))
             {
-                player.Hide();
-                //this is just a small flaw
+                //player.HideHarmonians(this.maxCapacity);
                 currentCapacity = 0;
             }
 
