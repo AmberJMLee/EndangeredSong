@@ -29,8 +29,7 @@ namespace EndangeredSong
             this.maxX = maxX;
             this.maxY = maxY;
             this.frameRate = 1;
-            this.isActive = false;
-            
+            this.isActive = false;            
 	    }
         public Rectangle getRect()
         {
@@ -110,7 +109,6 @@ namespace EndangeredSong
                 direction.Normalize();
                 this.pos = this.pos + direction * 6;
             }
-
         }
     }
 }

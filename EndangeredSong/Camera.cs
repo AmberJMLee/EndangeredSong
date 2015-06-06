@@ -16,7 +16,6 @@ namespace EndangeredSong
         {
             view = newView;
         }
-
         public void Update(GameTime gameTime, Player player, int screenWidth, int screenHeight)
         {
             center = new Vector2(player.getPosition().X + (player.getDimension().X / 2) - (screenWidth / 2), player.getPosition().Y + (player.getDimension().Y / 2) - (screenHeight / 2));

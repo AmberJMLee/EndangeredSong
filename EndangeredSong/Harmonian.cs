@@ -122,7 +122,7 @@ namespace EndangeredSong
                 this.isFound = true;
             }
                 
-            if (this.isFound)
+            if (this.isFound && !this.isHid)
             {
                 if (direction.Length() > 100)
                 {

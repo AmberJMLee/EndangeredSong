@@ -153,8 +153,7 @@ namespace EndangeredSong
             for (int i = 0; i < hidingPlaces.Count; i++)                           
                 ((HidingPlace)hidingPlaces[i]).LoadContent(this.Content);
             for (int k = 0; k < harmonians.Count; k++)
-                ((Harmonian)harmonians[k]).LoadContent(this.Content);
-            
+                ((Harmonian)harmonians[k]).LoadContent(this.Content);            
         }
 
         protected override void UnloadContent()
@@ -194,15 +193,13 @@ namespace EndangeredSong
                 {
                     b1.activate();
                     b1.setPosition(new Vector2(rand.Next(0, 4000), rand.Next(0, 3000)));
-                    //b1.setPosition(new Vector2(player.getPosition().X, player.getPosition().Y));
-                    
+                    //b1.setPosition(new Vector2(player.getPosition().X, player.getPosition().Y));                    
                 }
 
                 if (elapsedTime % 20 >= 10) 
                 {
                     b1.disactivate();
                     elapsedTime = 0;
-
                 }
             }
 
@@ -225,8 +222,7 @@ namespace EndangeredSong
             if (!started)
                 menu.Draw(spriteBatch);
             else
-            {
-                
+            {               
                 for (int j = 0; j < decorations.Count; j++ )
                     ((Decor)decorations[j]).Draw(spriteBatch);
                 for (int l = 0; l < water.Count; l++)
@@ -235,12 +231,10 @@ namespace EndangeredSong
                     ((HidingPlace)hidingPlaces[i]).Draw(spriteBatch);
                 for (int k = 0; k < harmonians.Count; k++)
                     ((Harmonian)harmonians[k]).Draw(spriteBatch);
-
                 b1.Draw(spriteBatch);
                 player.Draw(spriteBatch);
-                map.Draw(spriteBatch, (int)camera.center.X + screenWidth - 200, (int)camera.center.Y);
-                
-            };
+                map.Draw(spriteBatch, (int)camera.center.X + screenWidth - 200, (int)camera.center.Y);                
+            }
                         
             spriteBatch.End();           
             base.Draw(gameTime);
