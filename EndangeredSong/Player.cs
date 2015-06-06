@@ -93,10 +93,16 @@ namespace EndangeredSong
         public void HideHarmonians(HidingPlace h, ArrayList harmonians)
         {
             
-            if (h.isFull())   //tree is filled, take back all harmonians
-            {                
+            if (!h.isEmpty())   //tree is filled, take back all harmonians
+            { 
+                if (this.isHid)
+                {
+                    this.Hide();
+                    h.empty();
+                }               
                 for (int i = 0; i < harmonians.Count; i++)
                 {
+                    
                     if (h.isEmpty())
                         break;
                     if (((Harmonian)harmonians[i]).getFound() && ((Harmonian)harmonians[i]).getHid() 
@@ -114,7 +120,7 @@ namespace EndangeredSong
                 for (int i = 0; i < harmonians.Count; i++)
                 {
                     if (h.isFull())
-                        break;
+                        break;                    
                     if (((Harmonian)harmonians[i]).getFound() && !((Harmonian)harmonians[i]).getHid()
                                                               && h.getRect().Intersects(((Harmonian)harmonians[i]).getRect()))
                     {
@@ -122,7 +128,12 @@ namespace EndangeredSong
                         h.fill();
                         this.numFound--;
                     }
-
+                    if (this.numFound == 0 && !h.isFull())
+                    {
+                        this.Hide();
+                        h.fill();
+                        break;
+                    }
                 }
             }
         }
