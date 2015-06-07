@@ -20,6 +20,8 @@ namespace EndangeredSong
         bool isActive;
         int frameRate;
 
+        
+
         public BIOAgent(int x, int y, int width, int height, int maxX, int maxY)
 	    {
             this.pos.X = x;
@@ -29,11 +31,13 @@ namespace EndangeredSong
             this.maxX = maxX;
             this.maxY = maxY;
             this.frameRate = 1;
-            this.isActive = false;            
+            this.isActive = false;
+
 	    }
         public Rectangle getRect()
         {
-            return new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y); 
+        
+            return new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X , (int)dim.Y ); 
         }
         public Vector2 getPosition()
         {
@@ -76,27 +80,16 @@ namespace EndangeredSong
         }
         public void Update(Controls controls, GameTime gameTime, Player player, ArrayList harmonians)
         {
-            Rectangle r;
-
-            for (int i = 0; i < harmonians.Count; i++)  //loops through harmonian and checks for death of found, unhidden harmonians
+            Console.WriteLine("in bioagent update method");
+            Rectangle r = player.getRect();
+            Console.WriteLine("Player rect intersects with bio agent rect " + getRect().Intersects(r));
+            if (this.isActive && this.getRect().Intersects(r)) //if bioAgents rect intersects with player rect    
             {
-
-                r = ((Harmonian)harmonians[i]).getRect();
-
-                if (this.getRect().Intersects(r) && ((Harmonian)harmonians[i]).getFound() && !((Harmonian)harmonians[i]).getHid())
-                {
-                    //((Harmonian)harmonians[i]).Die();
-                    //Debug.WriteLine("HARMONIAN DEATH");
-                }
+                player.Die();
+                Console.WriteLine("RECT INTERSECTION");
+                player.deadHarmonians(this, harmonians);
             }
-
-            //checks for player death
-            r = player.getRect();
-            if (this.getRect().Intersects(r))
-            {                  
-                //player.Die();
-                //Debug.WriteLine("PLAYER DEATH");
-            }            
+       
             Move(controls, player);
         }
 

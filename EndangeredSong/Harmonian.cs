@@ -106,6 +106,7 @@ namespace EndangeredSong
             }
             if (this.isFound)
             {
+                  
 //                s.Volume = 1;
                 //this.isHid = player.isHidden();
             } 
