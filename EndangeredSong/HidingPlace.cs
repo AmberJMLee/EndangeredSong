@@ -94,7 +94,7 @@ namespace EndangeredSong
         }
         public void Draw(SpriteBatch sb)
         {
-            if (this.isEmpty())
+            if (!this.isFull())
                 sb.Draw(image, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
             else
                 sb.Draw(filledHidingPlace, new Rectangle((int)pos.X, (int)pos.Y, (int)dim.X, (int)dim.Y), Color.White);
